@@ -19,9 +19,6 @@
 
 #############################################################################################################################
 
-
-#############################################################################################################################
-
 # Sistema de input e indentificação da operação(Mediano):
 
 # import math
@@ -71,6 +68,9 @@
 
 #############################################################################################################################
 
+
+#############################################################################################################################
+
 # Sistema de input e indentificação da operação(complexo):
 
 import math
@@ -81,28 +81,29 @@ def Inicio():
 
     while True:
 
-        print("Temos essa opções de operação: !, log, +, -, /, *, %, ^")
+        print("\n====================================================================")
+        print("\nTemos essa opções de operação: !, log, +, -, /, *, %, ^")
         op = input("\nEscolha a operação: ")
         if op in opG:
             return op
         else:
-            print("Operação inválida. Tente novamente.")        
+            print("\nOperação inválida. Tente novamente.")        
 
 def Fatorial():
     
     n1 = int(input("\nEscolha um número: "))
     r = math.factorial(n1)
     Cop = "fatorial"
-    print(f"O {Cop} de {n1} é igual a {r}")
-    exit()
+    print(f"\nO {Cop} de {n1} é igual a {r}\n")
+    print("====================================================================")
 
 def Log():
 
     n1 = float(input("\nEscolha o primeiro número: "))
     n2 = float(input("\nEscolha o segundo número: "))
     r = math.log(n2, n1)
-    print(f"Log na base {n1} e o logaritmando {n2} o X é igual a {r}")
-    exit()
+    print(f"\nLog na base {n1} e o logaritmando {n2} o X é igual a {r}\n")
+    print("====================================================================")
 
 def Add():
 
@@ -110,8 +111,8 @@ def Add():
     n2 = float(input("\nEscolha o segundo número: "))
     r = n1 + n2
     Cop = " mais "
-    print(f"{n1}{Cop}{n2} é igual a {r}")
-    exit()
+    print(f"\n{n1}{Cop}{n2} é igual a {r}\n")
+    print("====================================================================")
 
 def Sub():
 
@@ -119,8 +120,8 @@ def Sub():
     n2 = float(input("\nEscolha o segundo número: "))
     r = n1 - n2
     Cop = " menos "
-    print(f"{n1}{Cop}{n2} é igual a {r}")
-    exit()
+    print(f"\n{n1}{Cop}{n2} é igual a {r}\n")
+    print("====================================================================")
 
 def Mult():
 
@@ -128,8 +129,8 @@ def Mult():
     n2 = float(input("\nEscolha o segundo número: "))
     r = n1 * n2
     Cop = " multiplaicado por "
-    print(f"{n1}{Cop}{n2} é igual a {r}")
-    exit()
+    print(f"\n{n1}{Cop}{n2} é igual a {r}\n")
+    print("====================================================================")
 
 def Div():
 
@@ -138,8 +139,8 @@ def Div():
     r = n1 / n2
     round(r, 2)
     Cop = " dividido "
-    print(f"{n1}{Cop}{n2} é igual a {r}")
-    exit()
+    print(f"\n{n1}{Cop}{n2} é igual a {r}\n")
+    print("====================================================================")
 
 def Elev():
 
@@ -147,8 +148,8 @@ def Elev():
     n2 = float(input("\nEscolha o segundo número: "))
     r = n1 ** n2
     Cop = " elevado "
-    print(f"{n1}{Cop}{n2} é igual a {r}")
-    exit()
+    print(f"\n{n1}{Cop}{n2} é igual a {r}\n")
+    print("====================================================================")
 
 def Porc():
 
@@ -157,8 +158,8 @@ def Porc():
     r = n1 * (n2 / 100)
     round(r, 2)
     Cop = " porcento de "
-    print(f"{n1}{Cop}{n2} é igual a {r}")  
-    exit()
+    print(f"\n{n1}{Cop}{n2} é igual a {r}\n") 
+    print("====================================================================")
 
 while True:
     op = Inicio()
