@@ -23,19 +23,28 @@
 
 import math
 
-op = str(input("\nEscolha a operação: "))
-r = int
-Cop = str
+def Inicio():
+    
+    opG = ["!", "log", "+", "-", "/", "*", "%", "^"]
 
-if op == "!":
+    while True:
 
+        print("Temos essa opções de operação: !, log, +, -, /, *, %, ^")
+        op = input("\nEscolha a operação: ")
+        if op in opG:
+            return op
+        else:
+            print("Operação inválida. Tente novamente.")        
+
+def Fatorial():
+    
     n1 = int(input("\nEscolha um número: "))
     r = math.factorial(n1)
     Cop = "fatorial"
     print(f"O {Cop} de {n1} é igual a {r}")
     exit()
 
-elif op == "log":
+def Log():
 
     n1 = float(input("\nEscolha o primeiro número: "))
     n2 = float(input("\nEscolha o segundo número: "))
@@ -43,30 +52,80 @@ elif op == "log":
     print(f"Log na base {n1} e o logaritmando {n2} o X é igual a {r}")
     exit()
 
-else:
+def Add():
+
     n1 = float(input("\nEscolha o primeiro número: "))
     n2 = float(input("\nEscolha o segundo número: "))
+    r = n1 + n2
+    Cop = " mais "
+    print(f"{n1}{Cop}{n2} é igual a {r}")
+    exit()
 
+def Sub():
 
-if op == "+": r = n1 + n2
-elif op == "-": r = n1 - n2
-elif op == "/":
+    n1 = float(input("\nEscolha o primeiro número: "))
+    n2 = float(input("\nEscolha o segundo número: "))
+    r = n1 - n2
+    Cop = " menos "
+    print(f"{n1}{Cop}{n2} é igual a {r}")
+    exit()
+
+def Mult():
+
+    n1 = float(input("\nEscolha o primeiro número: "))
+    n2 = float(input("\nEscolha o segundo número: "))
+    r = n1 * n2
+    Cop = " multiplaicado por "
+    print(f"{n1}{Cop}{n2} é igual a {r}")
+    exit()
+
+def Div():
+
+    n1 = float(input("\nEscolha o primeiro número: "))
+    n2 = float(input("\nEscolha o segundo número: "))
     r = n1 / n2
     round(r, 2)
-elif op == "*": r = n1 * n2
-elif op == "^": r = n1 ** n2
-elif op == "%": 
+    Cop = " dividido "
+    print(f"{n1}{Cop}{n2} é igual a {r}")
+    exit()
+
+def Elev():
+
+    n1 = float(input("\nEscolha o primeiro número: "))
+    n2 = float(input("\nEscolha o segundo número: "))
+    r = n1 ** n2
+    Cop = " elevado "
+    print(f"{n1}{Cop}{n2} é igual a {r}")
+    exit()
+
+def Porc():
+
+    n1 = float(input("\nEscolha o primeiro número: "))
+    n2 = float(input("\nEscolha o segundo número: "))
     r = n1 * (n2 / 100)
     round(r, 2)
+    Cop = " porcento de "
+    print(f"{n1}{Cop}{n2} é igual a {r}")  
+    exit()
 
-if op == "+": Cop = " mais "
-elif op == "-": Cop = " menos "
-elif op == "/": Cop = " dividido "
-elif op == "*": Cop = " multiplicado por "
-elif op == "^": Cop = " elevado "
-elif op == "%": Cop = " porcento de "
+while True:
+    op = Inicio()
 
-print(f"\n{n1}{Cop}{n2} é igual a {r}")
-exit()
+    if op == "+": 
+        Add()
+    elif op == "-": 
+        Sub()
+    elif op == "/": 
+        Div()
+    elif op == "*": 
+        Mult() 
+    elif op == "^": 
+        Elev() 
+    elif op == "!": 
+        Fatorial()
+    elif op == "log": 
+        Log() 
+    else: 
+        Porc() 
 
 #############################################################################################################################
