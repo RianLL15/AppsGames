@@ -56,7 +56,6 @@ def DfD():
         TM = 90 #Tentativas Max
         t = 0 #Tempo
         tm = 600 #Tempo Max
-        print(nA)
 
         while T < TM:
 
