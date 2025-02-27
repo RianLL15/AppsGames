@@ -77,32 +77,94 @@ import math
 
 def Inicio():
     
-    opG = ["!", "log", "+", "-", "/", "*", "%", "^"]
+    opG = ["!","!!", "bhaskara", "log", "+", "-", "/", "*", "%", "^"]
 
     while True:
 
         print("\n====================================================================")
-        print("\nTemos essa opções de operação: !, log, +, -, /, *, %, ^")
-        op = input("\nEscolha a operação: ")
+        print("\nTemos essa opções de operação: !, !!, bhaskara, log, +, -, /, *, %, ^")
+        op = input("\nEscolha a operação: ").lower()
         if op in opG:
             return op
         else:
-            print("\nOperação inválida. Tente novamente.")        
+            print("\nOperação inválida. Tente novamente.") 
+
+def Bhaskara():
+
+    a = int(input("Qual o valor de a:"))
+    b = int(input("Qual o valor de b:"))
+    c = int(input("Qual o valor de c:"))
+
+    delta = b ** 2 - 4 * a * c
+
+    if delta == 0:
+
+        X1 = ((-1 * b) + math.sqrt(delta)) / 2 * a
+        X2 = ((-1 * b) - math.sqrt(delta)) / 2 * a
+
+        print (f"O valor do x' é igual a {X1}")
+
+    elif delta > 0:
+
+        X1 = (-b + delta ** (1 / 2)) / (2 * a)
+        X2 = (-b - delta ** (1 / 2)) / (2 * a)
+
+        print (f"O valor do x' é igual a {X1} e o valor do x'' é igual a {X2}")
+    else:
+        print ("Essa equação não possui raizes reais" )
+
 
 def Fatorial():
+
+    if op == "!":
+
+        n1 = int(input("\nEscolha um número: "))
+        r = math.factorial(n1)
+        print(f"\nO fatorial de {n1} é igual a {r}\n")
+        print("====================================================================")
+
+def Dfatorial():
+
+    n1f = int(input("\nEscolha um número: "))
+    n1r = n1f
+    r = 1
     
-    n1 = int(input("\nEscolha um número: "))
-    r = math.factorial(n1)
-    Cop = "fatorial"
-    print(f"\nO {Cop} de {n1} é igual a {r}\n")
+    while n1f > 0:
+
+        r *= n1f
+        n1f -= 2
+
+    print(f"\nO duplo fatorial de {n1r} é igual a {r}\n")
     print("====================================================================")
+
 
 def Log():
 
-    n1 = float(input("\nEscolha o primeiro número: "))
-    n2 = float(input("\nEscolha o segundo número: "))
-    r = math.log(n2, n1)
-    print(f"\nLog na base {n1} e o logaritmando {n2} o X é igual a {r}\n")
+    n1 = float(input("\nEscolha o logaritmando: "))
+    n2 = input("\nEscolha a base(pressione Enter para base 10): ")
+    str
+
+    if n1 <= 0:
+
+        print("\nErro: o logaritmando deve ser maior que zero.")
+        return
+
+    if n2 == "":
+
+        n2 = 10
+
+    else:
+
+        n2 = float(n2)
+
+        if n2 <= 0:
+
+            print("\nErro: a base deve ser maior que zero.")
+            return
+
+    r = round(math.log(n1, n2), 2)
+    print(f"\nLogartimando de {n1} na base {n2} é igual a {r}\n")
+
     print("====================================================================")
 
 def Add():
@@ -110,8 +172,7 @@ def Add():
     n1 = float(input("\nEscolha o primeiro número: "))
     n2 = float(input("\nEscolha o segundo número: "))
     r = n1 + n2
-    Cop = " mais "
-    print(f"\n{n1}{Cop}{n2} é igual a {r}\n")
+    print(f"\n{n1} mais {n2} é igual a {r}\n")
     print("====================================================================")
 
 def Sub():
@@ -119,8 +180,7 @@ def Sub():
     n1 = float(input("\nEscolha o primeiro número: "))
     n2 = float(input("\nEscolha o segundo número: "))
     r = n1 - n2
-    Cop = " menos "
-    print(f"\n{n1}{Cop}{n2} é igual a {r}\n")
+    print(f"\n{n1} menos {n2} é igual a {r}\n")
     print("====================================================================")
 
 def Mult():
@@ -128,18 +188,22 @@ def Mult():
     n1 = float(input("\nEscolha o primeiro número: "))
     n2 = float(input("\nEscolha o segundo número: "))
     r = n1 * n2
-    Cop = " multiplaicado por "
-    print(f"\n{n1}{Cop}{n2} é igual a {r}\n")
+    print(f"\n{n1} multiplaicado por {n2} é igual a {r}\n")
     print("====================================================================")
 
 def Div():
 
     n1 = float(input("\nEscolha o primeiro número: "))
     n2 = float(input("\nEscolha o segundo número: "))
-    r = n1 / n2
-    round(r, 2)
-    Cop = " dividido "
-    print(f"\n{n1}{Cop}{n2} é igual a {r}\n")
+
+    if n2 == 0:
+
+        print("\nErro: divisão por zero não é permitida.")
+
+    else:
+        r = round(n1 / n2, 2)
+        print(f"\n{n1} dividido por {n2} é igual a {r}\n")
+
     print("====================================================================")
 
 def Elev():
@@ -147,18 +211,16 @@ def Elev():
     n1 = float(input("\nEscolha o primeiro número: "))
     n2 = float(input("\nEscolha o segundo número: "))
     r = n1 ** n2
-    Cop = " elevado "
-    print(f"\n{n1}{Cop}{n2} é igual a {r}\n")
+    print(f"\n{n1} elevado {n2} é igual a {r}\n")
     print("====================================================================")
 
 def Porc():
 
-    n1 = float(input("\nEscolha o primeiro número: "))
-    n2 = float(input("\nEscolha o segundo número: "))
-    r = n1 * (n2 / 100)
-    round(r, 2)
-    Cop = " porcento de "
-    print(f"\n{n1}{Cop}{n2} é igual a {r}\n") 
+    n1 = float(input("\nEscolha a porcetagem: "))
+    n2 = float(input("\nEscolha um número: "))
+    r = round(n1 * (n2 / 100),2)
+    
+    print(f"\n{n1} por cento de {n2} é igual a {r}\n") 
     print("====================================================================")
 
 while True:
@@ -176,6 +238,10 @@ while True:
         Elev() 
     elif op == "!": 
         Fatorial()
+    elif op == "!!":
+        Dfatorial()
+    elif op == "bhaskara": 
+        Bhaskara()
     elif op == "log": 
         Log() 
     else: 
