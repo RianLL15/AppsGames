@@ -77,19 +77,27 @@ import math
 
 def Inicio():
     
-    opG = ["!","!!", "bhaskara", "log", "+", "-", "/", "*", "%", "^"]
+    opG = ["!","!!", "Subf12g", "log", "+", "-", "/", "*", "%", "^"]
 
     while True:
 
         print("\n====================================================================")
-        print("\nTemos essa opções de operação: !, !!, bhaskara, log, +, -, /, *, %, ^")
+        print("\nTemos essa opções de operação: !, !!, Subf12g log, +, -, /, *, %, ^")
         op = input("\nEscolha a operação: ").lower()
         if op in opG:
             return op
         else:
             print("\nOperação inválida. Tente novamente.") 
 
-def Bhaskara():
+def Subf12g():
+
+    f = input("Escolha qual função, se é de 1 grau ou 2 grau: ")
+
+    if == "1 grau":
+        def Subf1g():
+    
+    else:
+    def Subf2g():
 
     a = int(input("Qual o valor de a:"))
     b = int(input("Qual o valor de b:"))
