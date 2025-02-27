@@ -77,31 +77,26 @@ import math
 
 def Inicio():
     
-    opG = ["!","!!", "Subf12g", "log", "+", "-", "/", "*", "%", "^"]
+    opG = ["!","!!", "bhaskara", "log", "+", "-", "/", "*", "%", "^"]
 
     while True:
 
         print("\n====================================================================")
-        print("\nTemos essa opções de operação: !, !!, Subf12g log, +, -, /, *, %, ^")
+        print("\nTemos essa opções de operação: !, !!, bhaskara, log, +, -, /, *, %, ^")
         op = input("\nEscolha a operação: ").lower()
         if op in opG:
+
             return op
+        
         else:
+            
             print("\nOperação inválida. Tente novamente.") 
 
-def Subf12g():
+def Bhaskara():
 
-    f = input("Escolha qual função, se é de 1 grau ou 2 grau: ")
-
-    if == "1 grau":
-        def Subf1g():
-    
-    else:
-    def Subf2g():
-
-    a = int(input("Qual o valor de a:"))
-    b = int(input("Qual o valor de b:"))
-    c = int(input("Qual o valor de c:"))
+    a = int(input("\nQual o valor de a:"))
+    b = int(input("\nQual o valor de b:"))
+    c = int(input("\nQual o valor de c:"))
 
     delta = b ** 2 - 4 * a * c
 
@@ -110,16 +105,19 @@ def Subf12g():
         X1 = ((-1 * b) + math.sqrt(delta)) / 2 * a
         X2 = ((-1 * b) - math.sqrt(delta)) / 2 * a
 
-        print (f"O valor do x' é igual a {X1}")
+        print (f"\nO valor do x' é igual a {X1}")
 
     elif delta > 0:
 
         X1 = (-b + delta ** (1 / 2)) / (2 * a)
         X2 = (-b - delta ** (1 / 2)) / (2 * a)
 
-        print (f"O valor do x' é igual a {X1} e o valor do x'' é igual a {X2}")
+        print (f"\nO valor do x' é igual a {X1} e o valor do x'' é igual a {X2}")
+
     else:
-        print ("Essa equação não possui raizes reais" )
+        print ("\nEssa equação não possui raizes reais" )
+
+    print("\n====================================================================")
 
 
 def Fatorial():
@@ -129,7 +127,8 @@ def Fatorial():
         n1 = int(input("\nEscolha um número: "))
         r = math.factorial(n1)
         print(f"\nO fatorial de {n1} é igual a {r}\n")
-        print("====================================================================")
+        
+    print("====================================================================")
 
 def Dfatorial():
 
