@@ -75,15 +75,16 @@
 
 import math
 
+opG = ["!","!!", "bhaskara", "log", "+", "-", "/", "*", "%", "^"]
+
 def Inicio():
-    
-    opG = ["!","!!", "bhaskara", "log", "+", "-", "/", "*", "%", "^"]
 
     while True:
 
         print("\n====================================================================")
         print("\nTemos essa opções de operação: !, !!, bhaskara, log, +, -, /, *, %, ^")
         op = input("\nEscolha a operação: ").lower()
+
         if op in opG:
 
             return op
@@ -94,25 +95,24 @@ def Inicio():
 
 def Bhaskara():
 
-    a = int(input("\nQual o valor de a:"))
-    b = int(input("\nQual o valor de b:"))
-    c = int(input("\nQual o valor de c:"))
+    a = int(input("\nQual o valor de a: "))
+    b = int(input("\nQual o valor de b: "))
+    c = int(input("\nQual o valor de c: "))
 
     delta = b ** 2 - 4 * a * c
 
     if delta == 0:
 
         X1 = ((-1 * b) + math.sqrt(delta)) / 2 * a
-        X2 = ((-1 * b) - math.sqrt(delta)) / 2 * a
 
-        print (f"\nO valor do x' é igual a {X1}")
+        print (f"\nA equação possui apenas uma raiz real: x' = {X1}")
 
     elif delta > 0:
 
         X1 = (-b + delta ** (1 / 2)) / (2 * a)
         X2 = (-b - delta ** (1 / 2)) / (2 * a)
 
-        print (f"\nO valor do x' é igual a {X1} e o valor do x'' é igual a {X2}")
+        print (f"\nAs raízes da equação são: x' = {X1} e x'' = {X2}")
 
     else:
         print ("\nEssa equação não possui raizes reais" )
@@ -225,8 +225,7 @@ def Porc():
 
     n1 = float(input("\nEscolha a porcetagem: "))
     n2 = float(input("\nEscolha um número: "))
-    r = round(n1 * (n2 / 100),2)
-    
+    r = round(n1 * (n2 / 100),2) 
     print(f"\n{n1} por cento de {n2} é igual a {r}\n") 
     print("====================================================================")
 
@@ -250,8 +249,8 @@ while True:
     elif op == "bhaskara": 
         Bhaskara()
     elif op == "log": 
-        Log() 
+        Log()
     else: 
-        Porc() 
+        Porc()
 
 #############################################################################################################################
