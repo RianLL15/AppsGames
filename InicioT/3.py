@@ -26,6 +26,8 @@
 
 #Adivinhe o número(Complexo):
 
+import math
+from math import inf
 import pygame
 import random
 import time
@@ -53,9 +55,9 @@ def Inicio(): #Primeira verificacao
 def DfD(): 
 
         T = 0 #Tentativas
-        TM = 90 #Tentativas Max
+        TM = 5 #Tentativas Max
         t = 0 #Tempo
-        tm = 600 #Tempo Max
+        tm = math.inf #Tempo Max
 
         while T < TM:
 
@@ -67,7 +69,8 @@ def DfD():
                 print("\nVocê acertou!!!!")
                 while t < tm:
                     Special.play()
-                    time.sleep(2)
+                    time.sleep(0.1)
+                    pygame.mixer.music.unpause()
                 tm -= 1
                 exit()
             elif T == TM: 
@@ -92,7 +95,7 @@ def DfF():
         
         T = 0 #Tentativas
         t = 0 #Tempo
-        tm = 600 #Tempo Max
+        tm = math.inf #Tempo Max
 
         while True:
 
