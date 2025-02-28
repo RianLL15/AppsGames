@@ -75,14 +75,14 @@
 
 import math
 
-opG = ["!","!!", "bhaskara", "teoremapit", "log", "+", "-", "/", "*", "%", "^"]
+opG = ["!","!!", "f2g", "raizq", "pit", "log", "+", "-", "/", "*", "%", "^"]
 
 def Inicio():
 
     while True:
 
-        print("\n====================================================================")
-        print("\nTemos essa opções de operação: !, !!, bhaskara, teoremapit, log, +, -, /, *, %, ^")
+        print("\n==========================================================================================")
+        print("\nTemos essa opções de operação: !, !!, f2g raizq, pit, log, +, -, /, *, %, ^")
         op = input("\nEscolha a operação: ").lower()
 
         if op in opG:
@@ -139,7 +139,7 @@ def Pit():
              #     #
              #       #
              #         #    
-        {b}  #           #   {a}
+      {b}    #           #   {a}
              #             #
              #               #
              # # #             #
@@ -163,7 +163,7 @@ def Pit():
         
         print(f"\nNão é um triângulo perfeito, porque tem valores decimais.")
 
-    print("\n====================================================================")
+    print("\n==========================================================================================")
 
 def Bhaskara():
 
@@ -189,7 +189,7 @@ def Bhaskara():
     else:
         print ("\nEssa equação não possui raizes reais" )
 
-    print("\n====================================================================")
+    print("\n==========================================================================================")
 
 
 def Fatorial():
@@ -245,6 +245,20 @@ def Log():
     print(f"\nLogartimando de {n1} na base {n2} é igual a {r}\n")
 
     print("====================================================================")
+
+def Raiz():
+
+        n1 = int(input("\nEscolha um número: "))
+        
+        if n1 < 0:
+
+            print("\nNão é possível calcular a raiz quadrada de um número negativo\n")
+
+        else:
+
+            r = math.sqrt(n1)
+            print(f"\n A raiz quadrada de {n1} é igual a {r}\n")
+        print("====================================================================")
 
 def Add():
 
@@ -318,12 +332,14 @@ while True:
         Fatorial()
     elif op == "!!":
         Dfatorial()
-    elif op == "bhaskara": 
+    elif op == "f2g": 
         Bhaskara()
     elif op == "log": 
         Log()
-    elif op == "teoremapit":
+    elif op == "pit":
         Pit()
+    elif op == "raizq":
+        Raiz()
     else: 
         Porc()
 
