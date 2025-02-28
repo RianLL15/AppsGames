@@ -75,14 +75,14 @@
 
 import math
 
-opG = ["!","!!", "bhaskara", "log", "+", "-", "/", "*", "%", "^"]
+opG = ["!","!!", "bhaskara", "teoremapit", "log", "+", "-", "/", "*", "%", "^"]
 
 def Inicio():
 
     while True:
 
         print("\n====================================================================")
-        print("\nTemos essa opções de operação: !, !!, bhaskara, log, +, -, /, *, %, ^")
+        print("\nTemos essa opções de operação: !, !!, bhaskara, teoremapit, log, +, -, /, *, %, ^")
         op = input("\nEscolha a operação: ").lower()
 
         if op in opG:
@@ -92,6 +92,78 @@ def Inicio():
         else:
             
             print("\nOperação inválida. Tente novamente.") 
+
+def Pit():
+
+    a = input("\nEscolha o valor da hipotenusa (pressione Enter se deseja calcular): ")
+    b = input("\nEscolha o valor do primeiro cateto (pressione Enter se deseja calcular): ")
+    c = input("\nEscolha o valor do segundo cateto (pressione Enter se deseja calcular): ")
+
+    a = float(a) if a.strip() else None
+    b = float(b) if b.strip() else None
+    c = float(c) if c.strip() else None
+
+    if a is None and b is not None and c is not None:
+
+        a = math.sqrt(b**2 + c**2)
+        
+    elif b is None and a is not None and c is not None:
+        if a > c:
+
+            b = math.sqrt(a**2 - c**2)
+
+        else:
+
+            print("\nErro: A hipotenusa deve ser maior que o cateto.")
+            return
+
+    elif c is None and a is not None and b is not None:
+        if a > b:
+
+            c = math.sqrt(a**2 - b**2)
+
+        else:
+
+            print("\nErro: A hipotenusa deve ser maior que o cateto.")
+            return
+    
+    else:
+
+        print("\nErro: Você deve deixar exatamente um dos valores em branco para calcular.")
+        return
+
+    print(f"""\n
+             #
+             # #
+             #   #
+             #     #
+             #       #
+             #         #    
+        {b}  #           #   {a}
+             #             #
+             #               #
+             # # #             #
+             #   #               #
+             #####################
+
+                     {c}\n""")
+    
+    if a.is_integer() and b.is_integer() and c.is_integer():
+
+        a, b, c = int(a), int(b), int(c)
+
+        if a**2 == b**2 + c**2:
+
+            print(f"\nÉ um triângulo pitagórico perfeito!")
+
+        else:
+
+            print(f"\nNão é um triângulo pitagórico perfeito!")
+    else:
+        
+        print(f"\nNão é um triângulo perfeito, porque tem valores decimais.")
+
+    print("\n====================================================================")
 
 def Bhaskara():
 
@@ -156,7 +228,7 @@ def Log():
         print("\nErro: o logaritmando deve ser maior que zero.")
         return
 
-    if n2 == "":
+    if n2.strip() == "":
 
         n2 = 10
 
@@ -250,6 +322,8 @@ while True:
         Bhaskara()
     elif op == "log": 
         Log()
+    elif op == "teoremapit":
+        Pit()
     else: 
         Porc()
 
