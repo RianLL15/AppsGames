@@ -95,9 +95,9 @@ def Inicio():
 
 def Pit():
 
-    a = input("\nEscolha o valor da hipotenusa (pressione Enter se deseja calcular): ")
-    b = input("\nEscolha o valor do primeiro cateto (pressione Enter se deseja calcular): ")
-    c = input("\nEscolha o valor do segundo cateto (pressione Enter se deseja calcular): ")
+    a = input("\nEscolha o valor da hipotenusa (Pressione Enter se deseja calcular): ")
+    b = input("\nEscolha o valor do primeiro cateto (Pressione Enter se deseja calcular): ")
+    c = input("\nEscolha o valor do segundo cateto (Pressione Enter se deseja calcular): ")
 
     a = float(a) if a.strip() else None
     b = float(b) if b.strip() else None
