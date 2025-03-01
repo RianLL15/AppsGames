@@ -317,14 +317,14 @@ def Bhaskara():
 
     if delta == 0:
 
-        X1 = ((-1 * b) + math.sqrt(delta)) / 2 * a
+        X1 = (-b + math.sqrt(delta)) / (2 * a)
 
         print (f"\nA equação possui apenas uma raiz real: x' = {X1}")
 
     elif delta > 0:
 
-        X1 = (-b + delta ** (1 / 2)) / (2 * a)
-        X2 = (-b - delta ** (1 / 2)) / (2 * a)
+        X1 = (-b + math.sqrt(delta)) / (2 * a)
+        X2 = (-b - math.sqrt(delta)) / (2 * a)
 
         print (f"\nAs raízes da equação são: x' = {X1} e x'' = {X2}")
 
@@ -484,6 +484,8 @@ while True:
             PA()
         elif sub_op == "pg":
             PG()
+        elif sub_op == "f2g":
+            Bhaskara()
         elif sub_op == "gp":
             GP()
         elif sub_op == "pit":
@@ -492,5 +494,5 @@ while True:
             Log()
         elif sub_op == "raizq":
             Raiz()
-            
+
 #############################################################################################################################
