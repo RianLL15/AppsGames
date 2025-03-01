@@ -1,7 +1,40 @@
 #############################################################################################################################
 
-# Sistema de input e indentificação da operação(simples):
+# Sistema de operação feita em aula(Wendel):
 
+# n1 = int(input("Escolha o primeiro número: ")) 
+# n2 = int(input("\nEscolha o segundo número: "))
+
+# print(n1 + n2)
+# print(n1 - n2)
+# print(n1 / n2)
+# print(n1 * n2)
+# print(n1 ** n2)
+# print(n1 * (n2 / 100))
+
+#############################################################################################################################
+
+
+#############################################################################################################################
+
+# Melhorando o sistem anterior(Wendel):
+
+# n1 = int(input("Escolha o primeiro número: ")) 
+# n2 = int(input("\nEscolha o segundo número: "))
+
+# print(f"n1 + n2")
+# print(n1 - n2)
+# print(n1 / n2)
+# print(n1 * n2)
+# print(n1 ** n2)
+# print(n1 * (n2 / 100))
+
+#############################################################################################################################
+
+
+#############################################################################################################################
+
+# Sistema de input e indentificação da operação(simples):
 
 # n1 = float(input("Escolha o primeiro número: ")) 
 # n2 = float(input("\nEscolha o segundo número: "))
@@ -75,23 +108,166 @@
 
 import math
 
-opG = ["!","!!", "f2g", "raizq", "pit", "log", "+", "-", "/", "*", "%", "^"]
+fig = 90
+opI = ["!","!!", "+", "-", "/", "*", "%", "^", "subpag"]
+opS = ["pa","pg", "gp", "ge", "f2g", "raizq", "pit", "log", "voltar"]
 
 def Inicio():
 
     while True:
 
-        print("\n==========================================================================================")
-        print("\nTemos essa opções de operação: !, !!, f2g raizq, pit, log, +, -, /, *, %, ^")
+        print("\n" + "=" * fig)        
+        print("\nTemos essa opções de operação: !, !!, +, -, /, *, %, ^, subpag")
         op = input("\nEscolha a operação: ").lower()
 
-        if op in opG:
+        if op in opI:
 
             return op
         
         else:
             
             print("\nOperação inválida. Tente novamente.") 
+
+def SubP():
+
+    while True:
+
+        print("\n" + "=" * fig)
+        print("\nTemos essa opções de operação: pa, pg, gp, ge, f2g, raizq, pit, log, voltar")
+        sub_op = input("\nEscolha a operação: ").lower()
+
+        if sub_op in opS:
+
+            return sub_op
+        
+        else:
+            
+            print("\nOperação inválida. Tente novamente.")
+
+def GP():
+
+    print("\nAs opção de formas planas são: quadrado, retangulo, circulo e triangulo")
+    Fg = str(input("\nEscolha uma forma geométrica para calcular sua área: ")).lower()
+
+    if Fg == "quadrado":
+
+        l = float(input("\nDigite um lado do quadrado: "))
+        r = l ** 2
+
+        print(f"\nA área do quadrado é igual a {r}")
+
+    elif Fg == "retangulo":
+
+        b = float(input("\nDigite a base do retângulo: "))
+        h = float(input("\nDigite a altura do retângulo: "))
+
+        if b == h:
+
+            print("\nIsso não é um retângulo!")
+
+        else:
+
+            r = b * h
+            print(f"\nA área do retângulo é igual a {r}")
+
+    elif Fg == "triangulo":
+
+        print("Nos temos essas opções de triângulo: equilatero")
+        top = input("Escolha qual triângulo você quer calcular: ")
+
+        if top == "equilatero":
+
+            l = int(input("Digite um lado do triângulo: "))
+            r = ((l ** 2) * math.sqrt(3)) / 4
+
+            print(f"\nA área do triângulo equiláteto é igual a {r}")
+
+    elif Fg == "circulo":
+
+        c = input("\nVocê sabe a circunferência(Digite y ou n)? ").lower()
+
+        if c == "y":
+            
+            c = float(input("\nDigite a circunferência: "))
+            r = c / (2 * 3.14)
+            a = 3.14 * (r ** 2)
+            d = 2 * r
+
+        elif c == "n":
+
+            a = input("\nVocê sabe a área(Digite y ou n)? ")
+
+            if a == "y":
+
+                a = float(input("\nDigite a área: "))
+                r = math.sqrt(a / 3.14)
+                d = r * 2
+                c = 2 * 3.14 * r
+            
+            elif a == "n":
+
+                d = input("\nVocê sabe o diâmetro(Digite y ou n)? ")
+
+                if d == "y":
+
+                    d = float(input("\nDigite o  diâmetro: "))
+                    r = d / 2
+                    a = 3.14 * (r ** 2)
+                    c = 2 * 3.14 * r
+
+                elif d == "n":
+
+                    r = float(input("\nDigite o raio: "))
+                    a = 3.14 * (r ** 2)
+                    d = 2 * r
+                    c = 2 * 3.14 * r
+
+                else: 
+                    print("\nDigito errado!!")
+
+            else: 
+                print("\nDigito errado!!")
+ 
+        else:
+            print("\nDigito errado!!")
+
+        print(f"\nA área do círculo é igual a {round(a, 2)}")
+        print(f"A circunferência é igual {round(c, 2)}")
+        print(f"O diâmetro do círculo é igual a {round(d, 2)}")
+        print(f"raio do círculo é igual a {round(r, 2)}")          
+
+    else:
+        print("\nDigito errado!!")
+
+    print("\n" + "=" * fig)
+
+def PA():
+
+    an = int(input("\nDetermine o termo da PA: "))
+    a1 = int(input("\nInforme o primeiro número da PA: "))
+    a2 = int(input("\nInforme o segundo número da PA: "))
+    
+    r = a2 - a1  
+    n = an
+
+    termo_n = a1 + (n - 1) * r  
+
+    print(f"\nO {n}º termo da PA é: {termo_n}")
+    print("\n" + "=" * fig)
+
+
+def PG():
+
+    an = int(input("\nDetermine o termo da PG: "))
+    a1 = int(input("\nInforme o primeiro número da PG: "))
+    a2 = int(input("\nInforme o segundo número da PG: "))
+    
+    r = a2 / a1  
+
+    termo_n = a1 * (r ** (an - 1))
+
+    print(f"\nO {an}º termo da PG é: {termo_n}")
+    print("\n" + "=" * fig)
 
 def Pit():
 
@@ -163,7 +339,7 @@ def Pit():
         
         print(f"\nNão é um triângulo perfeito, porque tem valores decimais.")
 
-    print("\n==========================================================================================")
+    print("\n" + "=" * fig)
 
 def Bhaskara():
 
@@ -189,7 +365,7 @@ def Bhaskara():
     else:
         print ("\nEssa equação não possui raizes reais" )
 
-    print("\n==========================================================================================")
+    print("\n" + "=" * fig)
 
 
 def Fatorial():
@@ -198,9 +374,9 @@ def Fatorial():
 
         n1 = int(input("\nEscolha um número: "))
         r = math.factorial(n1)
-        print(f"\nO fatorial de {n1} é igual a {r}\n")
+        print(f"\nO fatorial de {n1} é igual a {r}")
         
-    print("====================================================================")
+    print("\n" + "=" * fig)
 
 def Dfatorial():
 
@@ -213,8 +389,8 @@ def Dfatorial():
         r *= n1f
         n1f -= 2
 
-    print(f"\nO duplo fatorial de {n1r} é igual a {r}\n")
-    print("====================================================================")
+    print(f"\nO duplo fatorial de {n1r} é igual a {r}")
+    print("\n" + "=" * fig)
 
 
 def Log():
@@ -242,9 +418,9 @@ def Log():
             return
 
     r = round(math.log(n1, n2), 2)
-    print(f"\nLogartimando de {n1} na base {n2} é igual a {r}\n")
+    print(f"\nLogartimando de {n1} na base {n2} é igual a {r}")
 
-    print("====================================================================")
+    print("\n" + "=" * fig)
 
 def Raiz():
 
@@ -252,21 +428,22 @@ def Raiz():
         
         if n1 < 0:
 
-            print("\nNão é possível calcular a raiz quadrada de um número negativo\n")
+            print("\nNão é possível calcular a raiz quadrada de um número negativo")
 
         else:
 
             r = math.sqrt(n1)
-            print(f"\n A raiz quadrada de {n1} é igual a {r}\n")
-        print("====================================================================")
+            print(f"\n A raiz quadrada de {n1} é igual a {r}")
+
+        print("\n" + "=" * fig)
 
 def Add():
 
     n1 = float(input("\nEscolha o primeiro número: "))
     n2 = float(input("\nEscolha o segundo número: "))
     r = n1 + n2
-    print(f"\n{n1} mais {n2} é igual a {r}\n")
-    print("====================================================================")
+    print(f"\n{n1} mais {n2} é igual a {r}")
+    print("\n" + "=" * fig)
 
 def Sub():
 
@@ -274,15 +451,15 @@ def Sub():
     n2 = float(input("\nEscolha o segundo número: "))
     r = n1 - n2
     print(f"\n{n1} menos {n2} é igual a {r}\n")
-    print("====================================================================")
+    print("\n" + "=" * fig)
 
 def Mult():
 
     n1 = float(input("\nEscolha o primeiro número: "))
     n2 = float(input("\nEscolha o segundo número: "))
     r = n1 * n2
-    print(f"\n{n1} multiplaicado por {n2} é igual a {r}\n")
-    print("====================================================================")
+    print(f"\n{n1} multiplaicado por {n2} é igual a {r}")
+    print("\n" + "=" * fig)
 
 def Div():
 
@@ -295,25 +472,25 @@ def Div():
 
     else:
         r = round(n1 / n2, 2)
-        print(f"\n{n1} dividido por {n2} é igual a {r}\n")
+        print(f"\n{n1} dividido por {n2} é igual a {r}")
 
-    print("====================================================================")
+    print("\n" + "=" * fig)
 
 def Elev():
 
     n1 = float(input("\nEscolha o primeiro número: "))
     n2 = float(input("\nEscolha o segundo número: "))
     r = n1 ** n2
-    print(f"\n{n1} elevado {n2} é igual a {r}\n")
-    print("====================================================================")
+    print(f"\n{n1} elevado {n2} é igual a {r}")
+    print("\n" + "=" * fig)
 
 def Porc():
 
     n1 = float(input("\nEscolha a porcetagem: "))
     n2 = float(input("\nEscolha um número: "))
     r = round(n1 * (n2 / 100),2) 
-    print(f"\n{n1} por cento de {n2} é igual a {r}\n") 
-    print("====================================================================")
+    print(f"\n{n1} por cento de {n2} é igual a {r}") 
+    print("\n" + "=" * fig)
 
 while True:
     op = Inicio()
@@ -332,15 +509,22 @@ while True:
         Fatorial()
     elif op == "!!":
         Dfatorial()
-    elif op == "f2g": 
-        Bhaskara()
-    elif op == "log": 
-        Log()
-    elif op == "pit":
-        Pit()
-    elif op == "raizq":
-        Raiz()
-    else: 
+    elif op == "%": 
         Porc()
 
+    else:      
+        sub_op = SubP()
+        if sub_op == "pa":
+            PA()
+        elif sub_op == "pg":
+            PG()
+        elif sub_op == "gp":
+            GP()
+        elif sub_op == "pit":
+            Pit()
+        elif sub_op == "log":
+            Log()
+        elif sub_op == "raizq":
+            Raiz()
+            
 #############################################################################################################################
