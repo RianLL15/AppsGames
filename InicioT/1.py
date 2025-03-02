@@ -76,7 +76,89 @@ import math
 
 fig = 90
 opI = ["!","!!", "+", "-", "/", "*", "%", "^", "subpag"]
-opS = ["pa","pg", "gp", "ge", "f2g", "raizq", "pit", "log", "voltar"]
+opS = ["pa","pg", "gp", "f2g", "raizq", "pit", "log","js", "jc", "subpag", "voltar"]
+opSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "voltar"]
+
+com = ["mm", "cm", "dm", "m", "dam", "hm", "km"]
+area = ["mm2", "cm2", "dm2", "m2", "dam2", "hm2", "km2"]
+vol = ["mm3", "cm3", "dm3", "m3", "dam3", "hm3", "km3"]
+massa = ["mg", "cg", "dg", "g", "dag", "hg", "kg"]
+temp = ["ms", "seg", "min", "h", "dia", "semana", "mes", "ano", "ano bissexto"]
+cap = ["ml", "cl", "dl", "l", "dal", "hl", "kl"]
+
+fatores_com = {
+
+    "mm": 0.01,
+    "cm": 0.1,
+    "dm": 1,
+    "m": 10,
+    "dam": 100,
+    "hm": 1000,
+    "km": 10000
+
+}
+
+fatores_area = {
+
+    "mm2": 0.000001,
+    "cm2": 0.0001,
+    "dm2": 0.01,
+    "m2": 1,
+    "dam2": 100,
+    "hm2": 10000,
+    "km2": 1000000
+
+}
+
+fatores_vol = {
+
+    "mm3": 0.000000001,  
+    "cm3": 0.000001,     
+    "dm3": 0.001,        
+    "m3": 1,            
+    "dam3": 1000,       
+    "hm3": 1000000,     
+    "km3": 1000000000  
+
+}
+
+fatores_mass = {
+
+    "mg": 0.01,  
+    "cg": 0.1,     
+    "dg": 1,        
+    "g": 10,            
+    "dag": 100,       
+    "hg": 1000,     
+    "kg": 10000 
+
+}
+
+fatores_temp = {
+
+    "ms": 0.001,  
+    "seg": 1,       
+    "min": 60,      
+    "h": 3600,    
+    "dia": 86400, 
+    "semana": 604800, 
+    "mes": 2592000,
+    "ano": 31536000,
+    "ano bissexto": 31622400
+
+}
+
+fatores_cap = {
+
+    "ml": 0.0001,
+    "cl": 0.001,
+    "dl": 0.1,
+    "l": 1,
+    "dal": 10,
+    "hl": 100,
+    "kl": 1000
+
+}
 
 def Inicio():
 
@@ -99,7 +181,7 @@ def SubP():
     while True:
 
         print("\n" + "=" * fig)
-        print("\nTemos essa opções de operação: pa, pg, gp, ge, f2g, raizq, pit, log, voltar")
+        print("\nTemos essa opções de operação: pa, pg, gp, f2g, raizq, pit, log, js, jc, subpag, voltar")
         sub_op = input("\nEscolha a operação: ").lower()
 
         if sub_op in opS:
@@ -109,6 +191,207 @@ def SubP():
         else:
             
             print("\nOperação inválida. Tente novamente.")
+    
+def SubSubP():
+
+    while True:
+
+        print("\n" + "=" * fig)
+        print("\nAqui convertemos: comprimento, area, volume, massa, capacidade, tempo, voltar")
+        subsub_op = input("\nO que você quer converter: ").lower()
+
+        if subsub_op in opSS:
+
+            return subsub_op
+        
+        else:
+
+            print("\nConverção inválida. Tente novamente.")
+
+def Com():
+
+    print("\nAqui convertemos comprimentos: mm, cm, dm, m, dam, hm, km")
+    c = input("\nO que você quer converter: ").lower()
+
+    if c not in com:
+        print("\nOperação inválida. Tente novamente.")
+        return 
+        
+    cp = input("\nConverter para: ").lower()
+
+    if cp not in com:
+        print("\nOperação inválida. Tente novamente.")
+        return
+          
+
+    c1 = float(input(f"\nDigite o valor em {c}: "))  
+
+    vm = c1 * fatores_com[c]
+
+    c2 = vm / fatores_com[cp]
+
+    print(f"\n{c1} {c} equivale a {c2,} {cp}")
+    print("\n" + "=" * fig)
+
+def Area():
+
+    print("\nAqui convertemos comprimentos: mm2, cm2, dm2, m2, dam2, hm2, km2")
+    c = input("\nO que você quer converter: ").lower()
+
+    if c not in area:
+        print("\nOperação inválida. Tente novamente.")
+        return 
+        
+    cp = input("\nConverter para: ").lower()
+
+    if cp not in area:
+        print("\nOperação inválida. Tente novamente.")
+        return
+          
+
+    c1 = float(input(f"\nDigite o valor em {c}: "))  
+
+    vmq = c1 * fatores_area[c]
+
+    c2 = vmq / fatores_area[cp]
+
+    print(f"\n{c1} {c} equivale a {c2} {cp}")
+    print("\n" + "=" * fig)
+
+def Vol():
+
+    print("\nAqui convertemos comprimentos: mm3, cm3, dm3, m3, dam3, hm3, km3")
+    c = input("\nO que você quer converter: ").lower()
+
+    if c not in vol:
+        print("\nOperação inválida. Tente novamente.")
+        return 
+        
+    cp = input("\nConverter para: ").lower()
+
+    if cp not in vol:
+        print("\nOperação inválida. Tente novamente.")
+        return
+          
+
+    c1 = float(input(f"\nDigite o valor em {c}: "))  
+
+    vmc = c1 * fatores_vol[c]
+
+    c2 = vmc / fatores_vol[cp]
+
+    print(f"\n{c1} {c} equivale a {c2} {cp}")
+    print("\n" + "=" * fig)
+
+def Massa():
+
+    print("\nAqui convertemos comprimentos: mg, cg, dg, g, dag, hg, kg")
+    c = input("\nO que você quer converter: ").lower()
+
+    if c not in massa:
+        print("\nOperação inválida. Tente novamente.")
+        return 
+        
+    cp = input("\nConverter para: ").lower()
+
+    if cp not in massa:
+        print("\nOperação inválida. Tente novamente.")
+        return
+          
+
+    c1 = float(input(f"\nDigite o valor em {c}: "))  
+
+    vm = c1 * fatores_mass[c]
+
+    c2 = vm / fatores_mass[cp]
+
+    print(f"\n{c1} {c} equivale a {c2} {cp}")
+    print("\n" + "=" * fig)
+
+def Cap():
+
+    print("\nAqui convertemos comprimentos: ml, cl, dl, l, dal, hl, kl")
+    c = input("\nO que você quer converter: ").lower()
+
+    if c not in cap:
+        print("\nOperação inválida. Tente novamente.")
+        return 
+        
+    cp = input("\nConverter para: ").lower()
+
+    if cp not in cap:
+        print("\nOperação inválida. Tente novamente.")
+        return
+          
+
+    c1 = float(input(f"\nDigite o valor em {c}: "))  
+
+    t = c1 * fatores_cap[c]
+
+    c2 = t / fatores_cap[cp]
+
+    print(f"\n{c1} {c} equivale a {c2} {cp}")
+    print("\n" + "=" * fig)
+
+
+def Temp():
+
+    print("\nAqui convertemos comprimentos: ms, seg, min, h, dia, semana, mes, ano, ano bissexto")
+    c = input("\nO que você quer converter: ").lower()
+
+    if c not in temp:
+        print("\nOperação inválida. Tente novamente.")
+        return 
+        
+    cp = input("\nConverter para: ").lower()
+
+    if cp not in temp:
+        print("\nOperação inválida. Tente novamente.")
+        return
+          
+
+    c1 = float(input(f"\nDigite o valor em {c}: "))  
+
+    t = c1 * fatores_temp[c]
+
+    c2 = t / fatores_temp[cp]
+
+    print(f"\n{c1} {c} equivale a {c2} {cp}")
+    print("\n" + "=" * fig)
+
+
+
+def JC():
+
+    c = float(input ("\nQual é o valor principal (capital) em R$: ")) 
+    t = float(input ("\nQual é a taxa de juros anual: ")) 
+    p = int(input("\nQual o periodo de tempo em anos: ")) 
+
+    t = t/ 100 
+    vf = c * (1 + t) ** p
+    j = vf - c
+
+    print(f"\nO valor final apos o periodo de tempo e de R$: {round(vf, 2)}") 
+    print(f"\nO total de juros acumulados e de R$: {round(j, 2)}")
+    print("\n" + "=" * fig) 
+
+def JS():
+
+    c = float(input("\nDigite o capital inicial em R$: "))
+    i = float(input("\nDigite a taxa de juros (% ao ano ou mês): "))
+
+    tf = input("\nInforme se o tempo está em 'meses' ou 'anos': ").strip().lower()
+    t = float(input("\nDigite o tempo: "))
+
+    if tf == "anos":
+        t = t * 12 
+
+    j = (c * i * t) / 100
+    m = c + j
+
+    print(f"\nO juros simples é: R$ {round(j, 2)}")
+    print(f"\nO montante total após {t} meses será: R$ {round(m, 2)}")
+    print("\n" + "=" * fig)
 
 def GP():
 
@@ -138,12 +421,12 @@ def GP():
 
     elif Fg == "triangulo":
 
-        print("Nos temos essas opções de triângulo: equilatero")
-        top = input("Escolha qual triângulo você quer calcular: ")
+        print("\nNos temos essas opções de triângulo: equilatero")
+        top = input("\nEscolha qual triângulo você quer calcular: ").lower()
 
         if top == "equilatero":
 
-            l = int(input("Digite um lado do triângulo: "))
+            l = int(input("\nDigite um lado do triângulo: "))
             r = ((l ** 2) * math.sqrt(3)) / 4
 
             print(f"\nA área do triângulo equiláteto é igual a {r}")
@@ -161,7 +444,7 @@ def GP():
 
         elif c == "n":
 
-            a = input("\nVocê sabe a área(Digite y ou n)? ")
+            a = input("\nVocê sabe a área(Digite y ou n)? ").lower()
 
             if a == "y":
 
@@ -172,7 +455,7 @@ def GP():
             
             elif a == "n":
 
-                d = input("\nVocê sabe o diâmetro(Digite y ou n)? ")
+                d = input("\nVocê sabe o diâmetro(Digite y ou n)? ").lower()
 
                 if d == "y":
 
@@ -459,6 +742,7 @@ def Porc():
     print("\n" + "=" * fig)
 
 while True:
+
     op = Inicio()
 
     if op == "+": 
@@ -480,10 +764,15 @@ while True:
 
     else:      
         sub_op = SubP()
+
         if sub_op == "pa":
             PA()
         elif sub_op == "pg":
             PG()
+        elif sub_op == "js":
+            JS()
+        elif sub_op == "jc":
+            JC()
         elif sub_op == "f2g":
             Bhaskara()
         elif sub_op == "gp":
@@ -494,5 +783,25 @@ while True:
             Log()
         elif sub_op == "raizq":
             Raiz()
+        elif sub_op == "voltar":
+            Inicio()
 
+        else:
+            subsub_op = SubSubP()
+
+            if subsub_op == "comprimento":
+                Com()
+            elif subsub_op == "area":
+                Area()
+            elif subsub_op == "volume":
+                Vol()
+            elif subsub_op == "massa":
+                Massa()
+            elif subsub_op == "capacidade":
+                Cap()
+            elif subsub_op == "tempo":
+                Temp()
+            elif subsub_op == "voltar":
+                SubP()
+            
 #############################################################################################################################
