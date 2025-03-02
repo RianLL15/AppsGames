@@ -619,11 +619,9 @@ def Bhaskara():
 
 def Fatorial():
 
-    if op == "!":
-
-        n1 = int(input("\nEscolha um número: "))
-        r = math.factorial(n1)
-        print(f"\nO fatorial de {n1} é igual a {r}")
+    n1 = int(input("\nEscolha um número: "))
+    r = math.factorial(n1)
+    print(f"\nO fatorial de {n1} é igual a {r}")
         
     print("\n" + "=" * fig)
 
@@ -761,7 +759,6 @@ while True:
         Dfatorial()
     elif op == "%": 
         Porc()
-
     else:      
         sub_op = SubP()
 
@@ -784,8 +781,7 @@ while True:
         elif sub_op == "raizq":
             Raiz()
         elif sub_op == "voltar":
-            Inicio()
-
+            continue
         else:
             subsub_op = SubSubP()
 
@@ -802,6 +798,6 @@ while True:
             elif subsub_op == "tempo":
                 Temp()
             elif subsub_op == "voltar":
-                SubP()
-            
+                continue
+
 #############################################################################################################################
