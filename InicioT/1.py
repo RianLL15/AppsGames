@@ -1,5 +1,39 @@
 #############################################################################################################################
 
+# Sistema de operação feita em aula(Wendel):
+
+# n1 = int(input("Escolha o primeiro número: ")) 
+# n2 = int(input("\nEscolha o segundo número: "))
+
+# print(n1 + n2)
+# print(n1 - n2)
+# print(n1 / n2)
+# print(n1 * n2)
+# print(n1 ** n2)
+# print(n1 * (n2 / 100))
+
+#############################################################################################################################
+
+
+#############################################################################################################################
+
+# Melhorando o sistem anterior(Wendel):
+
+# n1 = int(input("Escolha o primeiro número: ")) 
+# n2 = int(input("\nEscolha o segundo número: "))
+
+# print(f"n1 + n2")
+# print(n1 - n2)
+# print(n1 / n2)
+# print(n1 * n2)
+# print(n1 ** n2)
+# print(n1 * (n2 / 100))
+
+#############################################################################################################################
+
+
+#############################################################################################################################
+
 # Sistema de input e indentificação da operação(simples):
 
 # n1 = float(input("Escolha o primeiro número: ")) 
@@ -74,17 +108,17 @@
 
 import math
 
-fig = 90
-opI = ["!","!!", "+", "-", "/", "*", "%", "^", "subpag"]
-opS = ["pa","pg", "gp", "f2g", "raizq", "pit", "log","js", "jc", "subpag", "voltar"]
-opSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "voltar"]
+fig = 90 
+opI = ["!","!!", "+", "-", "/", "*", "%", "^", "subpag", "subsubpag"] # Opções para a tela inicial
+opS = ["pa","pg", "gp", "f2g", "raizq", "pit", "log","js", "jc", "subpag", "voltar"] # Opções para a tela secundária
+opSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "voltar"] # opções para a tela terciária
 
-com = ["mm", "cm", "dm", "m", "dam", "hm", "km"]
-area = ["mm2", "cm2", "dm2", "m2", "dam2", "hm2", "km2"]
-vol = ["mm3", "cm3", "dm3", "m3", "dam3", "hm3", "km3"]
-massa = ["mg", "cg", "dg", "g", "dag", "hg", "kg"]
-temp = ["ms", "seg", "min", "h", "dia", "semana", "mes", "ano", "ano bissexto"]
-cap = ["ml", "cl", "dl", "l", "dal", "hl", "kl"]
+com = ["mm", "cm", "dm", "m", "dam", "hm", "km"] # Comprimento
+area = ["mm2", "cm2", "dm2", "m2", "dam2", "hm2", "km2"] # Área
+vol = ["mm3", "cm3", "dm3", "m3", "dam3", "hm3", "km3"] # Volume
+massa = ["mg", "cg", "dg", "g", "dag", "hg", "kg"] # Peso ou massa
+temp = ["ms", "seg", "min", "h", "dia", "semana", "mes", "ano", "ano bissexto"] # Tempo
+cap = ["ml", "cl", "dl", "l", "dal", "hl", "kl"] # Capacidade
 
 fatores_com = {
 
@@ -230,7 +264,7 @@ def Com():
 
     c2 = vm / fatores_com[cp]
 
-    print(f"\n{c1} {c} equivale a {c2,} {cp}")
+    print(f"\n{c1} {c} equivale a {c2} {cp}")
     print("\n" + "=" * fig)
 
 def Area():
@@ -421,7 +455,7 @@ def GP():
 
     elif Fg == "triangulo":
 
-        print("\nNos temos essas opções de triângulo: equilatero")
+        print("\nNos temos essas opções de triângulo: equilatero, escaleno, isoseles")
         top = input("\nEscolha qual triângulo você quer calcular: ").lower()
 
         if top == "equilatero":
@@ -473,12 +507,18 @@ def GP():
 
                 else: 
                     print("\nDigito errado!!")
+                    return
+
 
             else: 
-                print("\nDigito errado!!")
- 
+                print("\n errado!!")
+                return
+
+
         else:
             print("\nDigito errado!!")
+            return
+ 
 
         print(f"\nA área do círculo é igual a {round(a, 2)}")
         print(f"A circunferência é igual {round(c, 2)}")
@@ -487,6 +527,8 @@ def GP():
 
     else:
         print("\nDigito errado!!")
+        return
+
 
     print("\n" + "=" * fig)
 
@@ -639,7 +681,6 @@ def Dfatorial():
     print(f"\nO duplo fatorial de {n1r} é igual a {r}")
     print("\n" + "=" * fig)
 
-
 def Log():
 
     n1 = float(input("\nEscolha o logaritmando: "))
@@ -740,49 +781,31 @@ def Porc():
     print("\n" + "=" * fig)
 
 while True:
-
+    
     op = Inicio()
 
-    if op == "+": 
+    if op == "+":
         Add()
-    elif op == "-": 
+    elif op == "-":
         Sub()
-    elif op == "/": 
+    elif op == "*":
+        Mult()
+    elif op == "/":
         Div()
-    elif op == "*": 
-        Mult() 
-    elif op == "^": 
-        Elev() 
-    elif op == "!": 
+    elif op == "^":
+        Elev()
+    elif op == "!":
         Fatorial()
     elif op == "!!":
         Dfatorial()
-    elif op == "%": 
+    elif op == "%":
         Porc()
-    else:      
-        sub_op = SubP()
+    elif op == "sair":  
+        break
+    elif op == "subsubpag":  
 
-        if sub_op == "pa":
-            PA()
-        elif sub_op == "pg":
-            PG()
-        elif sub_op == "js":
-            JS()
-        elif sub_op == "jc":
-            JC()
-        elif sub_op == "f2g":
-            Bhaskara()
-        elif sub_op == "gp":
-            GP()
-        elif sub_op == "pit":
-            Pit()
-        elif sub_op == "log":
-            Log()
-        elif sub_op == "raizq":
-            Raiz()
-        elif sub_op == "voltar":
-            continue
-        else:
+        while True:
+
             subsub_op = SubSubP()
 
             if subsub_op == "comprimento":
@@ -798,6 +821,54 @@ while True:
             elif subsub_op == "tempo":
                 Temp()
             elif subsub_op == "voltar":
-                continue
+                break  
+
+    else:
+
+        while True:  
+
+            sub_op = SubP()
+
+            if sub_op == "pa":
+                PA()
+            elif sub_op == "pg":
+                PG()
+            elif sub_op == "js":
+                JS()
+            elif sub_op == "jc":
+                JC()
+            elif sub_op == "f2g":
+                Bhaskara()
+            elif sub_op == "gp":
+                GP()
+            elif sub_op == "pit":
+                Pit()
+            elif sub_op == "log":
+                Log()
+            elif sub_op == "raizq":
+                Raiz()
+            elif sub_op == "voltar":
+                break  
+            
+            else:
+
+                while True:  
+
+                    subsub_op = SubSubP()
+
+                    if subsub_op == "comprimento":
+                        Com()
+                    elif subsub_op == "area":
+                        Area()
+                    elif subsub_op == "volume":
+                        Vol()
+                    elif subsub_op == "massa":
+                        Massa()
+                    elif subsub_op == "capacidade":
+                        Cap()
+                    elif subsub_op == "tempo":
+                        Temp()
+                    elif subsub_op == "voltar":
+                        break  
 
 #############################################################################################################################
