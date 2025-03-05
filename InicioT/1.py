@@ -107,10 +107,12 @@
 # Sistema de input e indentificação da operação(complexo):
 
 import math
+from functools import reduce
+
 
 fig = 90 
-opI = ["!","!!", "+", "-", "/", "*", "%", "^", "pa","pg", "gp", "f2g", "raizq", "log","js", "jc", "comprimento", "area", "volume", "massa", "tempo", "capacidade", "subpag", "subsubpag"] # Opções para a tela inicial
-opS = ["pa","pg", "gp", "f2g", "raizq", "log","js", "jc", "subpag", "voltar"] # Opções para a tela secundária
+opI = ["+", "-", "/", "*", "%", "^", "pm", "arrs", "cbs" "pa","pg", "gp", "f2g", "raizq", "log","js", "jc", "comprimento", "area", "volume", "massa", "tempo", "capacidade", "subpag", "subsubpag"] # Opções para a tela inicial, junto com comando segreto
+opS = ["pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raizq", "log","js", "jc", "subpag", "voltar"] # Opções para a tela secundária
 opSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "voltar"] # opções para a tela terciária
 
 com = ["mm", "cm", "dm", "m", "dam", "hm", "km"] # Comprimento
@@ -201,7 +203,7 @@ def Inicio():
     while True:
 
         print("\n" + "=" * fig)        
-        print("\nTemos essas opções de operação: !, !!, +, -, /, *, %, ^, subpag")
+        print("\nTemos essas opções de operação: +, -, /, *, %, ^, subpag")
         op = input("\nEscolha a operação: ").lower()
 
         if op in opI: # Verifica se a operação escolhida está na lista de operações válidas
@@ -222,7 +224,7 @@ def SubP():
     while True:
         
         print("\n" + "=" * fig)
-        print("\nTemos essas opções de operação: pa, pg, gp, f2g, raizq, log, js, jc, subpag, voltar")
+        print("\nTemos essas opções de operação: pm, arrs, cbs pa, pg, gp, f2g, raizq, log, js, jc, subpag, voltar")
         sub_op = input("\nEscolha a operação: ").lower()
 
         if sub_op in opS:  # Verifica se a operação escolhida está na lista de operações secundárias válidas
@@ -476,6 +478,171 @@ def Temp():
     except ValueError:
 
         print("\nErro: Certifique-se de inserir um número válido.")
+
+def PM():
+
+    """
+    Programa para calcular diferentes tipos de Permutações.
+    Permutação Simples (P(n) = n!), que calcula o número de maneiras distintas de organizar 
+    n elementos sem repetições; 
+    Permutação com Repetição (P(n; a, b, ...) = n! / (a! x b! x ...)), que considera repetições 
+    nos elementos; 
+    e Permutação Circular (Pc = (n - 1)!), que calcula o número de arranjos possíveis em um círculo. 
+    O programa exibe o processo completo de cálculo, mostrando a fórmula utilizada, os valores dos 
+    fatoriais e o resultado final.
+    """
+
+    try:
+
+        print("\nAs opções de permutação são: simples, repeticao, circular")
+        p = str(input("\nEscolha uma permutação para calcular: ")).lower()
+
+        # Permutação Simples
+        if p == "simples":
+
+            n = int(input("\nDigite o número total de elementos(n): "))  # Pede o número total de elementos
+            r = math.factorial(n)  # Calcula o fatorial de n
+
+            # Exibe o processo e o resultado
+            print(f"\nPn = {n}!")
+            print(f"\nO resultado dessa permutação simples é igual a {r}")
+
+        # Permutação com Repetição
+        elif p == "repeticao":
+
+            n = int(input("\nDigite o número total de elementos(n): "))  # Pede o número total de elementos
+
+            # Solicita a quantidade de grupos repetidos e os converte para uma lista de inteiros
+            rep = input("\nDigite as quantidades de elementos repetidos separadas por espaço(ex: 2 3 7 12): ")
+            rep = list(map(int, rep.split()))
+
+            f_n = math.factorial(n)  # Calcula o fatorial de n
+
+            # Inicializa variáveis para calcular o produto dos fatoriais dos elementos repetidos
+            p_f = 1
+            f_text = []  # Lista para exibir a equação sem os valores numéricos
+            f_v = []  # Lista para exibir os valores calculados
+
+            for r in rep:
+
+                    f_r = math.factorial(r)  # Calcula o fatorial de cada número repetido
+                    p_f *= f_r  # Multiplica os fatoriais dos elementos repetidos
+                    f_text.append(f"{r}!")  # Adiciona o texto da equação
+                    f_v.append(f"{f_r}")  # Adiciona os valores calculados
+
+            p_f_v = reduce(lambda x, y: x * y, [int(i) for i in f_v])
+            permutacao = f_n // p_f  # Calcula a permutação com repetição
+
+            # Verifica se a variável rep tem mais de um elemento
+            if len(rep) > 1:
+
+                # Exibe o processo completo do cálculo
+                print(f"\nPn^(a, b,...) = {n}! / {' × '.join(f_text)}")  # Fórmula sem valores
+                print(f"\nPn^(a, b,...) = {f_n} / {' × '.join(f_v)}")  # Fórmula com os valores calculados
+                print(f"\nPn^(a, b,...) = {f_n} / {p_f_v}")  # Fórmula com os valores calculados
+                print(f"\nO resultado dessa permutação com repetição é igual a {permutacao}")  # Exibe o resultado final
+
+            else: 
+
+                print(f"\nPn^(a, b,...) = {n}! / {' × '.join(f_text)}")  # Fórmula sem valores
+                print(f"\nPn^(a, b,...) = {f_n} / {' × '.join(f_v)}")  # Fórmula com os valores calculados
+                print(f"\nO resultado dessa permutação com repetição é igual a {permutacao}")  # Exibe o resultado final
+
+        # Permutação Circular
+        elif p == "circular":
+
+            n = int(input("\nDigite o número total de elementos(n): "))  # Pede o número total de elementos
+            r = math.factorial(n - 1)  # Calcula (n-1)!
+
+            # Exibe o processo e o resultado
+            print(f"\nPc = ({n} - 1)! = {n - 1}!")
+            print(f"\nO resultado da permutação circular é igual a {r}")
+
+        else:
+
+            print("\nOpção inválida. Escolha uma permutação mencionada.")
+
+        print("\n" + "=" * fig)  # Linha divisória para organização da saída
+
+    except ValueError:
+
+        print("\nErro: Certifique-se de inserir números válidos.")
+
+
+def Arrs():
+
+    """
+    Programa para calcular o Arranjo Simples, que determina o número de maneiras de 
+    selecionar e organizar p elementos distintos a partir de um total de n elementos, 
+    sem repetição, utilizando a fórmula A(n, p) = n! / (n - p)!. O programa exibe 
+    o processo completo do cálculo, incluindo a fórmula e o valor final.
+    """
+
+    try:
+
+        n = int(input("\nDigite o número total de elementos (n): "))
+        p = int(input("\nDigite o número de elementos escolhidos (p): "))
+
+        # Verifica se p é válido
+        if p > n or p < 0:
+
+            print("\nErro: p deve ser menor ou igual a n e maior ou igual a 0.")
+            return
+
+        # Calcula fatoriais necessários
+        f_n = math.factorial(n)
+        f_n_p = math.factorial(n - p)
+
+        # Calcula o arranjo
+        arranjo = f_n // f_n_p
+
+        # Exibe o processo completo do cálculo
+        print(f"\nAnp = {n}! / {n} - {p}!")
+        print(f"\nAnp = {f_n} / {f_n_p}")
+        print(f"\nO resultado do arranjo simples é igual a {arranjo}")
+        print("\n" + "=" * fig)  # Linha divisória para organização da saída
+
+    except ValueError:
+
+        print("\nErro: Certifique-se de inserir números válidos.")
+
+def Cbs():
+
+    """
+    Programa para calcular a Combinação Simples: 
+    Combinação Simples (C(n, p) = n! / (p! x (n - p)!)), que calcula o número de maneiras de 
+    selecionar p elementos distintos de um total de n elementos, sem considerar a ordem. 
+    O programa exibe o processo completo de cálculo, incluindo a fórmula utilizada, os valores dos 
+    fatoriais e o resultado final.
+    """
+
+    try:
+    
+        n = int(input("Digite o número total de elementos (n): "))
+        p = int(input("Digite o número de elementos escolhidos (p): "))
+
+        # Verifica se p é válido
+        if p > n or p < 0:
+            print("Erro: p deve ser menor ou igual a n e maior ou igual a 0.")
+            return
+
+        # Calcula fatoriais necessários
+        fatorial_n = math.factorial(n)
+        fatorial_p = math.factorial(p)
+        fatorial_n_p = math.factorial(n - p)
+
+        # Calcula a combinação
+        combinacao = fatorial_n // (fatorial_p * fatorial_n_p)
+
+        # Exibe o processo completo do cálculo
+        print("\nProcesso do cálculo:")
+        print(f"C({n}, {p}) = {n}! / ({p}! × ({n} - {p})!)")
+        print(f"C({n}, {p}) = {fatorial_n} / ({fatorial_p} × {fatorial_n_p})")
+        print(f"C({n}, {p}) = {combinacao}")
+
+    except ValueError:
+
+        print("\nErro: Certifique-se de inserir números válidos.")
 
 def JC():
 
@@ -902,52 +1069,6 @@ def Bhaskara():
 
         print("\nErro: Certifique-se de inserir números válidos.")
 
-def Fatorial():
-
-    """
-    Calcula e exibe o fatorial de um número inteiro positivo.
-    Utiliza a função factorial() do módulo math para realizar o cálculo.
-    """
-
-    try:
-
-        n1 = int(input("\nEscolha um número: ")) 
-        r = math.factorial(n1)  # Calcula o fatorial do número fornecido.
-        print(f"\nO fatorial de {n1} é igual a {r}")  # Exibe o resultado.
-
-        print("\n" + "=" * fig) # Linha divisória para organização da saída
-    
-    except ValueError:
-        print("\nErro: Certifique-se de inserir um número inteiro válido.")
-
-def DFatorial():
-
-    """
-    Calcula e exibe o duplo fatorial de um número inteiro positivo.
-    O duplo fatorial é definido como o produto dos números inteiros positivos que têm a mesma paridade 
-    do número original (ou seja, números pares multiplicam apenas pares, e ímpares apenas ímpares).
-    """
-
-    try:
-
-        n1f = int(input("\nEscolha um número: ")) 
-        n1r = n1f  
-        r = 1  
-
-        # Loop para calcular o duplo fatorial, decrementando de 2 em 2 até atingir 1 ou 0.
-        while n1f > 1:
-
-            r *= n1f  # Multiplica o resultado pelo número atual.
-            n1f -= 2  # Reduz o número em 2 para manter a paridade.
-
-        print(f"\nO duplo fatorial de {n1r} é igual a {r}")  # Exibe o resultado final.
-
-        print("\n" + "=" * fig)  # Linha divisória para organização da saída
-
-    except ValueError:
-
-        print("\nErro: Certifique-se de inserir um número inteiro válido.") 
-
 def Log():
 
     """
@@ -1149,7 +1270,7 @@ def comando_secreto(op):
     # Dicionário de comandos secretos, onde cada chave é um comando e o valor é a função associada.
     comandos = {
 
-        "pa": PA, "pg": PG, "gp": GP, "f2g": Bhaskara,  # Operações avançadas matemáticas
+        "pm": PM, "arrs": Arrs, "cbs": Cbs,"pa": PA, "pg": PG, "gp": GP, "f2g": Bhaskara,  # Operações avançadas matemáticas
         "raizq": Raiz, "log": Log, "js": JS, "jc": JC,  # Operações avançadas matemáticas
         "comprimento": Com, "area": Area, "volume": Vol,  # Conversões de unidades
         "massa": Massa, "capacidade": Cap, "tempo": Temp  # Conversões de unidades
@@ -1172,7 +1293,7 @@ def pag(op):
     operacoes = {
 
         "+": Add, "-": Sub, "*": Mult, "/": Div,  # Operações aritméticas básicas
-        "^": Elev, "!": Fatorial, "!!": DFatorial, "%": Porc  # Operações especiais
+        "^": Elev, "%": Porc  # Mais operações
 
     }
 
@@ -1195,7 +1316,7 @@ def sub_pag():
         # Dicionário de operações avançadas
         opSub = {
 
-            "pa": PA, "pg": PG, "gp": GP, "f2g": Bhaskara,  # Operações avançadas matemáticas
+            "pm": PM, "arrs": Arrs, "cbs": Cbs,"pa": PA, "pg": PG, "gp": GP, "f2g": Bhaskara,  # Operações avançadas matemáticas
             "raizq": Raiz, "log": Log, "js": JS, "jc": JC  # Mais operações
 
         }
@@ -1260,11 +1381,11 @@ while True:
         sub_pag()
 
     # Se a operação for uma das operações matemáticas básicas (+, -, *, /, ^, !, !!, %), chama a função correspondente.
-    elif op in ["+", "-", "*", "/", "^", "!", "!!", "%"]:
+    elif op in ["+", "-", "*", "/", "^", "%"]:
         pag(op)
 
     # Para operações avançadas que requerem um comando secreto
-    elif op in ["pa", "pg", "gp", "f2g", "raizq", "log", "js", "jc"]:
+    elif op in ["pm", "arrs", "cbs","pa", "pg", "gp", "f2g", "raizq", "log", "js", "jc"]:
         comando_secreto(op)
 
     # Para conversões que requerem um comando secreto
