@@ -600,6 +600,7 @@ def Arrs():
         print(f"\nAnp = {n}! / {n} - {p}!")
         print(f"\nAnp = {f_n} / {f_n_p}")
         print(f"\nO resultado do arranjo simples é igual a {arranjo}")
+
         print("\n" + "=" * fig)  # Linha divisória para organização da saída
 
     except ValueError:
@@ -618,27 +619,30 @@ def Cbs():
 
     try:
     
-        n = int(input("Digite o número total de elementos (n): "))
-        p = int(input("Digite o número de elementos escolhidos (p): "))
+        n = int(input("\nDigite o número total de elementos (n): "))
+        p = int(input("\nDigite o número de elementos escolhidos (p): "))
 
         # Verifica se p é válido
         if p > n or p < 0:
-            print("Erro: p deve ser menor ou igual a n e maior ou igual a 0.")
+            print("\nErro: p deve ser menor ou igual a n e maior ou igual a 0.")
             return
 
         # Calcula fatoriais necessários
-        fatorial_n = math.factorial(n)
-        fatorial_p = math.factorial(p)
-        fatorial_n_p = math.factorial(n - p)
+        f_n = math.factorial(n)
+        f_p = math.factorial(p)
+        f_n_p = math.factorial(n - p)
 
+        f_n_p_f = f_p * f_n_p
         # Calcula a combinação
-        combinacao = fatorial_n // (fatorial_p * fatorial_n_p)
+        combinacao = f_n // (f_p * f_n_p)
 
         # Exibe o processo completo do cálculo
-        print("\nProcesso do cálculo:")
-        print(f"C({n}, {p}) = {n}! / ({p}! × ({n} - {p})!)")
-        print(f"C({n}, {p}) = {fatorial_n} / ({fatorial_p} × {fatorial_n_p})")
-        print(f"C({n}, {p}) = {combinacao}")
+        print(f"\nCnp = {n}! / ({p}! × ({n} - {p})!)")
+        print(f"\nCnp = {f_n} / ({f_p} × {f_n_p})")
+        print(f"\nCnp = {f_n} / {f_n_p_f}")
+        print(f"\nO resultado da combinação simples é igual a {combinacao}")
+
+        print("\n" + "=" * fig)
 
     except ValueError:
 
@@ -1385,7 +1389,7 @@ while True:
         pag(op)
 
     # Para operações avançadas que requerem um comando secreto
-    elif op in ["pm", "arrs", "cbs","pa", "pg", "gp", "f2g", "raizq", "log", "js", "jc"]:
+    elif op in ["pm", "arrs", "cbs", "pa", "pg", "gp", "f2g", "raizq", "log", "js", "jc"]:
         comando_secreto(op)
 
     # Para conversões que requerem um comando secreto
