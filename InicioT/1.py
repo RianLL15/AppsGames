@@ -591,12 +591,16 @@ def Arrs():
         # Calcula fatoriais necessários
         f_n = math.factorial(n)
         f_n_p = math.factorial(n - p)
+        n_p = n - p
 
         # Calcula o arranjo
         arranjo = f_n // f_n_p
 
+        print(f"Anp = {n}! / (n - p)!")
+
         # Exibe o processo completo do cálculo
-        print(f"\nAnp = {n}! / {n} - {p}!")
+        print(f"\nAnp = {n}! / ({n} - {p})!")
+        print(f"\nAnp = {n}! / {n_p}!")
         print(f"\nAnp = {f_n} / {f_n_p}")
         print(f"\nO resultado do arranjo simples é igual a {arranjo}")
 
@@ -636,9 +640,10 @@ def Cbs():
         
         # Calcula a combinação
         combinacao = f_n // (f_p * f_n_p)
+        print("A formula da combinação sinples é: Cnp = n! / p!(n -p)!")
 
-        # Exibe o processo completo do cálculo
-        print(f"\nCnp = {n}! / {p}! × ({n} - {p}!)")
+        # E/ibe o processo completo do cálculo
+        print(f"\nCnp = {n}! / {p}! × ({n} - {p})!")
         print(f"\nCnp = {n}! / ({p}! × {n_p}!)")
         print(f"\nCnp = {f_n} / {f_p} × {f_n_p}")
         print(f"\nCnp = {f_n} / {f_n_p_f}")
