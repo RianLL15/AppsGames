@@ -1315,8 +1315,8 @@ def pag(op):
     # Dicionário das operações matemáticas básicas
     operacoes = {
 
-        "+": Add, "-": Sub, "*": Mult, "/": Div,  # Operações aritméticas básicas
-        "^": Elev, "%": Porc  # Mais operações
+        "+": Add, "-": Sub, "*": Mult, # Operações aritméticas básicas
+        "/": Div, "^": Elev, "%": Porc  # Mais operações
 
     }
 
@@ -1339,8 +1339,8 @@ def sub_pag():
         # Dicionário de operações avançadas
         opSub = {
 
-            "pm": PM, "arrs": Arrs, "cbs": Cbs,"pa": PA, "pg": PG, "gp": GP, "f2g": Bhaskara,  # Operações avançadas matemáticas
-            "raizq": Raiz, "log": Log, "js": JS, "jc": JC  # Mais operações
+            "pm": PM, "arrs": Arrs, "cbs": Cbs,"pa": PA, "pg": PG,  # Operações avançadas matemáticas
+            "gp": GP, "f2g": Bhaskara, "raizq": Raiz, "log": Log, "js": JS, "jc": JC  # Mais operações
 
         }
 
@@ -1387,7 +1387,7 @@ def subsub_pag():
 
         elif subsub_op == "voltar":  # Se o usuário escolher voltar
 
-            break  # Sai do loop e volta para a função anterior (sub_pag)
+            break  # Sai do loop e volta para a função anterior
 
         else:
             print("Opção inválida. Tente novamente.")  # Mensagem de erro para opção inválida
