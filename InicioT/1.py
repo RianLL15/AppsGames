@@ -109,8 +109,7 @@
 import math
 from functools import reduce
 
-
-fig = 90 
+fig = 100
 opI = ["+", "-", "/", "*", "%", "^", "pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raizq", "log", "js", "jc", "comprimento", "area", "volume", "massa", "tempo", "capacidade", "subpag", "subsubpag"] # Opções para a tela inicial, junto com comando segreto
 opS = ["pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raizq", "log","js", "jc", "subpag", "voltar"] # Opções para a tela secundária
 opSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "voltar"] # opções para a tela terciária
@@ -495,7 +494,7 @@ def PM():
     try:
 
         print("\nAs opções de permutação são: simples, repeticao, circular")
-        p = str(input("\nEscolha uma permutação para calcular: ")).lower()
+        p = str(input("\nEscolha uma permutação para calcular: ")).lower().strip()
 
         # Permutação Simples
         if p == "simples":
@@ -633,12 +632,15 @@ def Cbs():
         f_n_p = math.factorial(n - p)
 
         f_n_p_f = f_p * f_n_p
+        n_p = n - p
+        
         # Calcula a combinação
         combinacao = f_n // (f_p * f_n_p)
 
         # Exibe o processo completo do cálculo
-        print(f"\nCnp = {n}! / ({p}! × ({n} - {p})!)")
-        print(f"\nCnp = {f_n} / ({f_p} × {f_n_p})")
+        print(f"\nCnp = {n}! / {p}! × ({n} - {p}!)")
+        print(f"\nCnp = {n}! / ({p}! × {n_p}!)")
+        print(f"\nCnp = {f_n} / {f_p} × {f_n_p}")
         print(f"\nCnp = {f_n} / {f_n_p_f}")
         print(f"\nO resultado da combinação simples é igual a {combinacao}")
 
