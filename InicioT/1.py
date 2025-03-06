@@ -502,7 +502,7 @@ def PM():
             n = int(input("\nDigite o número total de elementos(n): "))  # Pede o número total de elementos
             r = math.factorial(n)  # Calcula o fatorial de n
 
-            print(f"A fórmula da permutação simples é: Pn = n!")
+            print("\nA fórmula da permutação simples é: Pn = n!")
             # Exibe o processo e o resultado
             print(f"\nPn = {n}!")
             print(f"\nO resultado dessa permutação simples é igual a {r}")
@@ -533,7 +533,7 @@ def PM():
             p_f_v = reduce(lambda x, y: x * y, [int(i) for i in f_v])
             permutacao = f_n // p_f  # Calcula a permutação com repetição
 
-            print(f"\n A fórmula da permutação com repetição é: Pn^(a, b...) = n! / a! x b!...")
+            print("\n A fórmula da permutação com repetição é: Pn^(a, b...) = n! / a! x b!...")
             # Verifica se a variável rep tem mais de um elemento
             if len(rep) > 1:
 
@@ -555,7 +555,7 @@ def PM():
             n = int(input("\nDigite o número total de elementos(n): "))  # Pede o número total de elementos
             r = math.factorial(n - 1)  # Calcula (n-1)!
 
-            print(f"A fórmula da permutação circular é: Pc = (n - 1)!")
+            print("\nA fórmula da permutação circular é: Pc = (n - 1)!")
             # Exibe o processo e o resultado
             print(f"\nPc = ({n} - 1)! = {n - 1}!")
             print(f"\nO resultado da permutação circular é igual a {r}")
@@ -599,7 +599,7 @@ def Arrs():
         # Calcula o arranjo
         arranjo = f_n // f_n_p
 
-        print(f"A fórmula do arranjo simples é: Anp = n! / (n - p)!")
+        print("\nA fórmula do arranjo simples é: Anp = n! / (n - p)!")
 
         # Exibe o processo completo do cálculo
         print(f"\nAnp = {n}! / ({n} - {p})!")
@@ -643,7 +643,7 @@ def Cbs():
         
         # Calcula a combinação
         combinacao = f_n // (f_p * f_n_p)
-        print("A formula da combinação sinples é: Cnp = n! / p!(n - p)!")
+        print("\nA formula da combinação sinples é: Cnp = n! / p!(n - p)!")
 
         # E/ibe o processo completo do cálculo
         print(f"\nCnp = {n}! / {p}! × ({n} - {p})!")
