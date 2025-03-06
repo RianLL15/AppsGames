@@ -111,7 +111,7 @@ from functools import reduce
 
 fig = 100
 opI = ["+", "-", "/", "*", "%", "^", "pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raizq", "log", "js", "jc", "comprimento", "area", "volume", "massa", "tempo", "capacidade", "subpag", "subsubpag"] # Opções para a tela inicial, junto com comando segreto
-opS = ["pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raizq", "log","js", "jc", "subpag", "voltar"] # Opções para a tela secundária
+opS = ["pm", "arrs", "cbs", "pa", "pg", "gp", "f2g", "raizq", "log", "js", "jc", "subpag", "voltar"] # Opções para a tela secundária
 opSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "voltar"] # opções para a tela terciária
 
 com = ["mm", "cm", "dm", "m", "dam", "hm", "km"] # Comprimento
