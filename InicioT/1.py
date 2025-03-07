@@ -598,7 +598,7 @@ def Med():
 
         # Loop para solicitar os números
         for i in range(qtd):
-            v = float(input(f"Digite o {i+1}º valor: "))
+            v = float(input(f"\nDigite o {i+1}º valor: "))
             vs.append(v)
 
         # Ordena a lista de valores
@@ -1605,7 +1605,7 @@ def subsub_pag():
         # Dicionário de conversões de unidades
         opSubSub = {
 
-            "media": Com, "moda": Area, "mediana": Vol 
+            "media": Me, "moda": Md, "mediana": Med 
 
         }
 
