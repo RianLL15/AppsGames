@@ -108,11 +108,13 @@
 
 import math
 from functools import reduce
+from collections import Counter
 
 fig = 100
-opI = ["+", "-", "/", "*", "%", "^", "pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raizq", "log", "js", "jc", "comprimento", "area", "volume", "massa", "tempo", "capacidade", "subpag", "subsubpag"] # Opções para a tela inicial, junto com comando segreto
+opI = ["+", "-", "/", "*", "%", "^", "pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raizq", "log", "js", "jc", "media", "moda", "mediana", "comprimento", "area", "volume", "massa", "tempo", "capacidade", "subpag", "subsubpag", "subpag3"] # Opções para a tela inicial, junto com comando segreto
 opS = ["pm", "arrs", "cbs", "pa", "pg", "gp", "f2g", "raizq", "log", "js", "jc", "subpag", "voltar"] # Opções para a tela secundária
-opSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "voltar"] # opções para a tela terciária
+opSS = ["media", "moda", "mediana", "subpag", "voltar"] # Opções para a tela terciária
+opSSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "voltar"] # opções para a tela 
 
 com = ["mm", "cm", "dm", "m", "dam", "hm", "km"] # Comprimento
 area = ["mm2", "cm2", "dm2", "m2", "dam2", "hm2", "km2"] # Área
@@ -244,12 +246,33 @@ def SubSubP():
     while True:
 
         print("\n" + "=" * fig)
-        print("\nAqui convertemos: comprimento, area, volume, massa, capacidade, tempo, voltar")
-        subsub_op = input("\nO que você quer converter: ").lower()
+        print("\nTemos essas opções de operação: media, moda, mediana, subpag, voltar")
+        subsub_op = input("\nEscolha a operação: ").lower()
 
         if subsub_op in opSS:  # Verifica se a opção escolhida está na lista de conversões válidas
 
             return subsub_op
+        
+        else:
+
+            print("\nConversão inválida. Tente novamente.")  # Mensagem de erro se a opção for inválida
+
+def Sub3P():
+
+    """
+    Função que exibe um menu de conversões disponíveis e solicita ao usuário que escolha uma opção.
+    Retorna a opção escolhida se for válida, caso contrário, solicita uma nova entrada.
+    """
+
+    while True:
+
+        print("\n" + "=" * fig)
+        print("\nAqui convertemos: comprimento, area, volume, massa, capacidade, tempo, voltar")
+        sub3_op = input("\nO que você quer converter: ").lower()
+
+        if sub3_op in opSSS:  # Verifica se a opção escolhida está na lista de conversões válidas
+
+            return sub3_op
         
         else:
 
@@ -478,6 +501,131 @@ def Temp():
 
         print("\nErro: Certifique-se de inserir um número válido.")
 
+def Me():
+
+    """
+    Função para calcular a Média Aritmética.  
+    O usuário insere vários números, e o programa calcula a média usando a fórmula:  
+    Me = (soma dos valores) / quantidade de valores  
+    O resultado representa o valor médio dos números informados.
+    """
+
+    try:
+
+        qtd = int(input("\nQuantos número você deseja inserir para calcular a média? ")) 
+
+        vs = [] # Lista para armazenar os valores inseridos
+        soma = 0
+
+        # Loop para solicitar os elementos
+        for i in range(qtd):
+            
+            v = float(input(f"\nDigite o {i+1}º valor: "))
+            vs.append(v)  # Adiciona o valor à lista
+            soma += v  # Soma os valores
+
+        # Calcula a média
+        media = soma / qtd
+
+        # Exibe a fórmula
+        print("\nA fórmula da média é: Me = n1 + n2 +.../ n")
+        print(f"\nMe = {' + '.join(map(str, vs))} / {qtd}")
+        print(f"\nMe = {soma} / {qtd}")
+        print(f"\nA média dos valores é {media}")
+
+        print("\n" + "=" * fig) # Linha divisória para organização da saída
+        
+    except ValueError:
+
+        print("\nErro: Certifique-se de inserir um número válido.")
+
+def Md():
+
+    """
+    Função para calcular a Moda.  
+    O usuário insere vários números, e o programa identifica o valor mais frequente.  
+    Se houver um único número com maior frequência, ele será a moda.  
+    Se houver múltiplos valores com a mesma frequência máxima, o conjunto será bimodal ou multimodal.  
+    Se todos os valores aparecerem com a mesma frequência, não há moda.  
+    O resultado representa o(s) número(s) que mais se repetem na amostra.
+    """
+
+    try:
+
+        qtd = int(input("\nQuantos números você deseja inserir para calcular a moda? "))  
+
+        # Inicializa uma lista para armazenar os valores
+        vs = []
+
+        # Loop para solicitar os elementos
+        for i in range(qtd):
+
+            v = float(input(f"Digite o {i+1}º valor: "))
+            vs.append(v)
+
+        # Calcula a frequência dos valores
+        c = Counter(vs)
+        f_m = max(c.values())  # Obtém a maior frequência
+
+        # Filtra os valores que aparecem com a frequência máxima
+        modas = [num for num, freq in c.items() if freq == f_m]
+
+        # Exibe o resultado
+        if len(modas) == len(vs):  # Caso em que todos aparecem com a mesma frequência
+
+            print("\nNão há moda, todos os valores aparecem com a mesma frequência.")
+
+        elif len(modas) == 1:
+
+            print(f"\nA moda é: {modas[0]} (aparece {f_m} vezes)")
+
+        else:
+
+            print(f"\nAs modas são: {', '.join(map(str, modas))} (aparecem {f_m} vezes cada)")
+
+    except ValueError:
+
+        print("\nErro: Certifique-se de inserir números válidos.")
+    
+def Med():
+
+    try:
+
+        qtd = int(input("\nQuantos números você deseja inserir para calcular a mediana? "))
+
+        # Inicializa uma lista para armazenar os valores
+        vs = []
+
+        # Loop para solicitar os números
+        for i in range(qtd):
+            v = float(input(f"Digite o {i+1}º valor: "))
+            vs.append(v)
+
+        # Ordena a lista de valores
+        vs.sort()
+
+        # Exibe os valores inseridos e a fórmula da mediana
+        print(f"\nValores inseridos ordenados: {vs}")
+        
+        if qtd % 2 == 1:  # Se o número de elementos for ímpar
+
+            mediana = vs[qtd // 2]
+            print(f"\nA fórmula da mediana para quantidade ímpar n = {qtd}:")
+            print(f"\nMediana = {vs[qtd // 2]} (valor central da lista ordenada)")
+
+        else:  # Se o número de elementos for par
+
+            mediana = (vs[qtd // 2 - 1] + vs[qtd // 2]) / 2
+            print(f"\nA fórmula da mediana para quantidade par n = {qtd}:")
+            print(f"\nMediana = {vs[qtd // 2 - 1]} + {vs[qtd // 2]} / 2")
+            print(f"\nMediana = {mediana} (média dos dois valores centrais)")
+
+        print("\n" + "=" * fig)  # Linha divisória para organização da saída
+
+    except ValueError:
+
+        print("\nErro: Certifique-se de inserir números válidos.")
+
 def PM():
 
     """
@@ -499,7 +647,7 @@ def PM():
         # Permutação Simples
         if p == "simples":
 
-            n = int(input("\nDigite o número total de elementos(n): "))  # Pede o número total de elementos
+            n = int(input("\nDigite o número total de elementos(n): "))  
             r = math.factorial(n)  # Calcula o fatorial de n
 
             # Exibe a fórmula
@@ -512,7 +660,7 @@ def PM():
         # Permutação com Repetição
         elif p == "repeticao":
 
-            n = int(input("\nDigite o número total de elementos(n): "))  # Pede o número total de elementos
+            n = int(input("\nDigite o número total de elementos(n): "))  
 
             # Solicita a quantidade de grupos repetidos e os converte para uma lista de inteiros
             rep = input("\nDigite as quantidades de elementos repetidos separadas por espaço(ex: 2 3 7 12): ")
@@ -536,7 +684,7 @@ def PM():
             permutacao = f_n // p_f  # Calcula a permutação com repetição
 
             # Exibe a fórmula
-            print("\n A fórmula da permutação com repetição é: Pn^(a, b...) = n! / a! x b!...")
+            print("\n A fórmula da permutação com repetição é: Pn^(a, b,...) = n! / a! x b!...")
 
             # Verifica se a variável rep tem mais de um elemento
             if len(rep) > 1:
@@ -556,7 +704,7 @@ def PM():
         # Permutação Circular
         elif p == "circular":
 
-            n = int(input("\nDigite o número total de elementos(n): "))  # Pede o número total de elementos
+            n = int(input("\nDigite o número total de elementos(n): "))  
             r = math.factorial(n - 1)  # Calcula (n-1)!
 
             # Exibe a fórmula
@@ -1010,15 +1158,22 @@ def PA():
     try:
 
         an = int(input("\nDetermine o termo da PA: "))  # Termo desejado
-        a1 = int(input("\nInforme o primeiro número da PA: "))  # Primeiro termo
-        a2 = int(input("\nInforme o segundo número da PA: "))  # Segundo termo
+        a1 = int(input("\nDigite o primeiro número da PA: "))  # Primeiro termo
+        a2 = input("\nDigite o segundo número da PA(Precise Enter se não souber): ").strip()  # Segundo termo
 
-        r = a2 - a1  # Calcula a razão da PA
-        n = an  # Número do termo desejado
+        if a2 == "":
 
-        termo_n = a1 + (n - 1) * r  # Fórmula do termo geral da PA
+            r = int(input("\nDigite a razão da PG: "))
 
-        print(f"\nO {n}º termo da PA é: {termo_n}")
+        else:
+
+            a2 = float(a2) # Converte o segundo termo para float
+            r = a2 - a1  # Calcula a razão da PA
+
+        termo_n = a1 + (an - 1) * r  # Fórmula do termo geral da PA
+
+        print("\nA fórmula da PA é An = a1 + (n - 1) x r")
+        print(f"\nO {an}º termo da PA é: {termo_n}")
         print("\n" + "=" * fig)  # Linha divisória para organização da saída
 
     except ValueError:
@@ -1038,13 +1193,21 @@ def PG():
     try:
 
         an = int(input("\nDetermine o termo da PG: "))  # Termo desejado
-        a1 = int(input("\nInforme o primeiro número da PG: "))  # Primeiro termo
-        a2 = int(input("\nInforme o segundo número da PG: "))  # Segundo termo
+        a1 = int(input("\nDigite o primeiro número da PG: "))  # Primeiro termo
+        a2 = input("\nDigite o segundo número da PG(Precise Enter se não souber): ").strip()  # Segundo termo
 
-        r = a2 / a1  # Calcula a razão da PG
+        if a2 == "":
+
+            r = int(input("\nDigite a razão da PG: "))
+
+        else:
+
+            a2 = float(a2)  # Converte o segundo termo para float
+            r = a2 / a1  # Calcula a razão da PG
 
         termo_n = a1 * (r ** (an - 1))  # Fórmula do termo geral da PG
 
+        print("\nA fórmula da PG é An = a1 x r ^n-1")
         print(f"\nO {an}º termo da PG é: {termo_n}")
         print("\n" + "=" * fig)  # Linha divisória para organização da saída
 
@@ -1164,15 +1327,29 @@ def Raiz():
 def Add():
 
     """
-    Realiza a soma de dois números.
+    Realiza a soma de múltiplos números.
     """
-
     try:
 
-        n1 = float(input("\nEscolha o primeiro número: "))  
-        n2 = float(input("\nEscolha o segundo número: ")) 
-        r = n1 + n2  # Realiza a soma dos dois números.
-        print(f"\n{n1} mais {n2} é igual a {r}")
+        qtd = int(input("\nQuantos números deseja somar? "))  # Pergunta quantos números serão somados
+
+        if qtd < 2:
+
+            print("\nErro: É necessário somar pelo menos dois números.")
+            return
+
+        t = 0  # Inicializa a variável que armazenará a soma
+        numeros = [] # Lista para armazenar os números digitados
+
+        for i in range(qtd):
+
+            num = float(input(f"\nDigite o {i+1}º número: "))
+            numeros.append(num)
+            t += num  # Soma os valores
+
+        print("\nA fórmula da soma é: n1 + n2 +...")
+        print(f"\n{' + '.join(map(str, numeros))}")
+        print(f"\nA soma dos {qtd} números é {t}")
 
         print("\n" + "=" * fig) # Linha divisória para organização da saída
 
@@ -1183,15 +1360,34 @@ def Add():
 def Sub():
 
     """
-    Realiza a subtração de dois números.
+    Realiza a subtração de múltiplos números e exibe a fórmula da operação.
     """
 
     try:
 
-        n1 = float(input("\nEscolha o primeiro número: "))  
-        n2 = float(input("\nEscolha o segundo número: "))  
-        r = n1 - n2  # Realiza a subtração dos dois números.
-        print(f"\n{n1} menos {n2} é igual a {r}")
+        qtd = int(input("\nQuantos números deseja subtrair? "))  # Pergunta quantos números serão usados na subtração
+
+        if qtd < 2:
+
+            print("\nErro: É necessário pelo menos dois números para a subtração.")
+            return
+
+        numeros = []  # Lista para armazenar os números digitados
+
+        for i in range(qtd):
+            
+            num = float(input(f"\nDigite o {i+1}º número: "))
+            numeros.append(num)  # Adiciona o número à lista
+
+        t = numeros[0]  # Define o primeiro número como base da subtração
+
+        for num in numeros[1:]:  # Percorre a lista a partir do segundo número
+
+            t -= num  # Subtrai os valores
+
+        print("\nA fórmula da subtração é: n1 - n2 -...")
+        print(f"\n{' - '.join(map(str, numeros))}")
+        print(f"\nO resultado da subtração dos {qtd} números é {t}")
 
         print("\n" + "=" * fig) # Linha divisória para organização da saída
 
@@ -1202,15 +1398,30 @@ def Sub():
 def Mult():
 
     """
-    Realiza a multiplicação de dois números.
+    Realiza a multiplicação de múltiplos números e exibe a fórmula da operação.
     """
 
     try:
 
-        n1 = float(input("\nEscolha o primeiro número: "))  
-        n2 = float(input("\nEscolha o segundo número: "))  
-        r = n1 * n2  # Realiza a multiplicação dos dois números.
-        print(f"\n{n1} multiplicado por {n2} é igual a {r}")
+        qtd = int(input("\nQuantos números deseja multiplicar? "))  # Pergunta quantos números serão multiplicados
+
+        if qtd < 2:
+
+            print("\nErro: É necessário multiplicar pelo menos dois números.")
+            return
+
+        t = 1  # Inicializa a variável que armazenará o resultado da multiplicação
+        numeros = []  # Lista para armazenar os números digitados
+
+        for i in range(qtd):
+
+            num = float(input(f"\nDigite o {i+1}º número: "))
+            numeros.append(num)
+            t *= num  # Multiplica os valores
+
+        print("\nA fórmula da multiplicação é: n1 × n2 ×...")
+        print(f"\n{' × '.join(map(str, numeros))}")
+        print(f"\nO resultado da multiplicação dos {qtd} números é {t}")
 
         print("\n" + "=" * fig) # Linha divisória para organização da saída
 
@@ -1221,23 +1432,39 @@ def Mult():
 def Div():
 
     """
-    Realiza a divisão de dois números fornecidos pelo usuário, tratando o caso da divisão por zero.
+    Realiza a divisão de múltiplos números e exibe a fórmula da operação.
     """
 
     try:
 
-        n1 = float(input("\nEscolha o primeiro número: "))  
-        n2 = float(input("\nEscolha o segundo número: "))  
+        qtd = int(input("\nQuantos números deseja dividir? "))  # Pergunta quantos números serão divididos
 
-        # Verifica se o divisor é zero, já que divisão por zero não é permitida.
-        if n2 == 0:
+        if qtd < 2:
+            print("\nErro: É necessário dividir pelo menos dois números.")
+            return
 
-            print("\nErro: divisão por zero não é permitida.")
+        numeros = []  # Lista para armazenar os números digitados
 
-        else:
+        for i in range(qtd):
+            num = float(input(f"\nDigite o {i+1}º número: "))
 
-            r = round(n1 / n2, 2)  # Realiza a divisão e arredonda o resultado para duas casas decimais.
-            print(f"\n{n1} dividido por {n2} é igual a {r}")
+            # Evita a divisão por zero
+            if i > 0 and num == 0:
+
+                print("\nErro: Não é possível dividir por zero.")
+                return
+
+            numeros.append(num)
+
+        t = numeros[0]  # Define o primeiro número como base da divisão
+
+        for num in numeros[1:]:  # Percorre a lista a partir do segundo número
+
+            t /= num  # Divide os valores
+
+        print("\nA fórmula da divisão é: n1 ÷ n2 ÷...")
+        print(f"\n{' ÷ '.join(map(str, numeros))}")
+        print(f"\nO resultado da divisão dos {qtd} números é: {t}")
 
         print("\n" + "=" * fig) # Linha divisória para organização da saída
 
@@ -1256,6 +1483,8 @@ def Elev():
         n1 = float(input("\nEscolha o primeiro número: ")) 
         n2 = float(input("\nEscolha o segundo número: "))  
         r = n1 ** n2  # Realiza a operação de exponenciação.
+
+        print("\nA fórmula da divisão é: n1ⁿ = n1 x n1...(n vezes)")
         print(f"\n{n1} elevado a {n2} é igual a {r}")
 
         print("\n" + "=" * fig) # Linha divisória para organização da saída
@@ -1293,7 +1522,8 @@ def comando_secreto(op):
     # Dicionário de comandos secretos, onde cada chave é um comando e o valor é a função associada.
     comandos = {
 
-        "pm": PM, "arrs": Arrs, "cbs": Cbs,"pa": PA, "pg": PG, "gp": GP, "f2g": Bhaskara,  # Operações avançadas matemáticas
+        "media": Me, "moda": Md, "mediana": Med,   # Operações avançadas matemáticas
+        "pm": PM, "arrs": Arrs, "cbs": Cbs,"pa": PA, "pg": PG, "gp": GP, "f2g": Bhaskara, # Operações avançadas matemáticas
         "raizq": Raiz, "log": Log, "js": JS, "jc": JC,  # Operações avançadas matemáticas
         "comprimento": Com, "area": Area, "volume": Vol,  # Conversões de unidades
         "massa": Massa, "capacidade": Cap, "tempo": Temp  # Conversões de unidades
@@ -1361,7 +1591,7 @@ def sub_pag():
 
             print("Opção inválida. Tente novamente.")  # Mensagem de erro para opção inválida
 
-# Função que direciona para conversões de unidades e cálculos adicionais.
+# Função que direciona para operações matemáticas mais avançadas.
 def subsub_pag():
 
     """
@@ -1373,6 +1603,40 @@ def subsub_pag():
         subsub_op = SubSubP()  # Obtém a entrada do usuário para conversão de unidades
 
         # Dicionário de conversões de unidades
+        opSubSub = {
+
+            "media": Com, "moda": Area, "mediana": Vol 
+
+        }
+
+        # Verifica se a opção digitada está nas conversões de unidades
+        if subsub_op in opSubSub:
+
+            opSubSub[subsub_op]()  # Chama a função correspondente à conversão de unidade
+
+        elif subsub_op == "voltar":  # Se o usuário escolher voltar
+
+            break  # Sai do loop e volta para a função anterior
+
+        elif subsub_op == "subpag":  # Se o usuário escolher "subpag", navega para subsub_pag
+
+            sub3_pag()
+
+        else:
+            print("Opção inválida. Tente novamente.")  # Mensagem de erro para opção inválida
+
+# Função que direciona para conversões de unidades e cálculos adicionais.
+def sub3_pag():
+
+    """
+    Direciona para conversões de unidades como comprimento, área, volume etc.
+    """
+
+    while True:
+
+        sub3_op = Sub3P()  # Obtém a entrada do usuário para conversão de unidades
+
+        # Dicionário de conversões de unidades
         conversoes = {
 
             "comprimento": Com, "area": Area, "volume": Vol,  # Conversões de unidades de comprimento, área e volume
@@ -1381,11 +1645,11 @@ def subsub_pag():
         }
 
         # Verifica se a opção digitada está nas conversões de unidades
-        if subsub_op in conversoes:
+        if sub3_op in conversoes:
 
-            conversoes[subsub_op]()  # Chama a função correspondente à conversão de unidade
+            conversoes[sub3_op]()  # Chama a função correspondente à conversão de unidade
 
-        elif subsub_op == "voltar":  # Se o usuário escolher voltar
+        elif sub3_op == "voltar":  # Se o usuário escolher voltar
 
             break  # Sai do loop e volta para a função anterior
 
@@ -1397,7 +1661,10 @@ while True:
 
     op = Inicio()  # Solicita uma opção inicial ao usuário.
 
-    if op == "subsubpag":  # Se o usuário escolher 'subsubpag', chama a função de subsub_pag().
+    if op == "subpag3":  # Se o usuário escolher 'subpag3', chama a função de sub3_pag().
+        sub3_pag()
+
+    if op == "subsubpag":  # Se o usuário escolher 'subpag3', chama a função de sub3_pag().
         subsub_pag()
 
     elif op == "subpag":  # Se o usuário escolher 'subpag', chama a função de sub_pag().
@@ -1408,7 +1675,7 @@ while True:
         pag(op)
 
     # Para operações avançadas que requerem um comando secreto
-    elif op in ["pm", "arrs", "cbs", "pa", "pg", "gp", "f2g", "raizq", "log", "js", "jc"]:
+    elif op in ["pm", "arrs", "cbs", "pa", "pg", "gp", "f2g", "raizq", "log", "js", "jc", "media", "moda", "mediana"]:
         comando_secreto(op)
 
     # Para conversões que requerem um comando secreto
