@@ -109,12 +109,16 @@
 import math
 from functools import reduce
 from collections import Counter
+from decimal import Decimal, getcontext
 
-fig = 100
-opI = ["+", "-", "/", "*", "%", "^", "pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raizq", "log", "js", "jc", "media", "moda", "mediana", "comprimento", "area", "volume", "massa", "tempo", "capacidade", "subpag", "subsubpag", "subpag3"] # Opções para a tela inicial, junto com comando segreto
+# Ajustando a precisão global do Decimal
+getcontext().prec = 100  # Define precisão alta para cálculos
+
+fig = 110
+opI = ["+", "-", "/", "*", "%", "^", "pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raizq", "log", "js", "jc", "media", "moda", "mediana", "comprimento", "area", "volume", "massa", "tempo", "capacidade", "dados", "temperatura", "subpag", "subsubpag", "subpag3"] # Opções para a tela inicial, junto com comando segreto
 opS = ["pm", "arrs", "cbs", "pa", "pg", "gp", "f2g", "raizq", "log", "js", "jc", "subpag", "voltar"] # Opções para a tela secundária
 opSS = ["media", "moda", "mediana", "subpag", "voltar"] # Opções para a tela terciária
-opSSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "voltar"] # opções para a tela quaternária
+opSSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "dados", "temperatura", "voltar"] # opções para a tela 
 
 com = ["mm", "cm", "dm", "m", "dam", "hm", "km"] # Comprimento
 area = ["mm2", "cm2", "dm2", "m2", "dam2", "hm2", "km2"] # Área
@@ -194,6 +198,31 @@ fatores_cap = {
     "kl": 1000     # Quilolitro para litros
 }
 
+# Dicionário para conversão de unidades de temperatura
+fatores_pera = {
+
+    "c_k": lambda c: c + 273.15,   # Celsius para Kelvin
+    "k_c": lambda k: k - 273.15,   # Kelvin para Celsius
+    "c_f": lambda c: (c * 9/5) + 32,  # Celsius para Fahrenheit
+    "f_c": lambda f: (f - 32) * 5/9,  # Fahrenheit para Celsius
+    "k_f": lambda k: (k - 273.15) * 9/5 + 32,  # Kelvin para Fahrenheit
+    "f_k": lambda f: (f - 32) * 5/9 + 273.15  # Fahrenheit para Kelvin
+}
+
+# Dicionário para conversão de unidades de dados
+fatores_dado = {
+
+    "b": Decimal(1),
+    "kb": Decimal(1024),
+    "mb": Decimal(1024)**2,
+    "gb": Decimal(1024)**3,
+    "tb": Decimal(1024)**4,
+    "pb": Decimal(1024)**5,
+    "eb": Decimal(1024)**6,
+    "zb": Decimal(1024)**7,
+    "yb": Decimal(1024)**8
+}
+
 def Inicio():
 
     """
@@ -210,9 +239,8 @@ def Inicio():
         if op in opI: # Verifica se a operação escolhida está na lista de operações válidas
 
             return op
-        
+            
         else:
-
             print("\nOperação inválida. Tente novamente.")  # Mensagem de erro se a operação for inválida
 
 def SubP():
@@ -225,7 +253,7 @@ def SubP():
     while True:
         
         print("\n" + "=" * fig)
-        print("\nTemos essas opções de operação: pm, arrs, cbs pa, pg, gp, f2g, raizq, log, js, jc, subpag, voltar")
+        print("\nTemos essas opções de operação: pm, arrs, cbs, pa, pg, gp, ge, f2g, raizq, log, js, jc, subpag, voltar")
         sub_op = input("\nEscolha a operação: ").lower()
 
         if sub_op in opS:  # Verifica se a operação escolhida está na lista de operações secundárias válidas
@@ -267,7 +295,7 @@ def Sub3P():
     while True:
 
         print("\n" + "=" * fig)
-        print("\nAqui convertemos: comprimento, area, volume, massa, capacidade, tempo, voltar")
+        print("\nAqui convertemos: comprimento, area, volume, massa, capacidade, tempo, temperatura, dados voltar")
         sub3_op = input("\nO que você quer converter: ").lower()
 
         if sub3_op in opSSS:  # Verifica se a opção escolhida está na lista de conversões válidas
@@ -303,6 +331,10 @@ def Com():
 
             print("\nComprimento inválido. Tente novamente.")
             return
+        
+        if c == cp:
+            print("\nAs unidades são iguais. A conversão não é necessária.")
+            return
 
         c1 = float(input(f"\nDigite o valor em {c}: "))  # Recebe o valor a ser convertido
 
@@ -310,8 +342,8 @@ def Com():
 
         c2 = vm / fatores_com[cp]  # Converte para a unidade desejada
 
-        print(f"\n{c1} {c} equivale a {c2} {cp}")
-        print("\n" + "=" * fig)
+        print(f"\n{c1} {c} equivale a {round(c2, 2)} {cp}")
+        print("\n" + "=" * fig) # Linha divisória para organização da saída 
 
     except ValueError:
 
@@ -339,6 +371,10 @@ def Area():
 
             print("\nOperação inválida. Tente novamente.")
             return
+        
+        if c == cp:
+            print("\nAs unidades são iguais. A conversão não é necessária.")
+            return
 
         c1 = float(input(f"\nDigite o valor em {c}: "))  
 
@@ -346,8 +382,8 @@ def Area():
 
         c2 = vmq / fatores_area[cp]  # Converte para a unidade desejada
 
-        print(f"\n{c1} {c} equivale a {c2} {cp}")
-        print("\n" + "=" * fig)
+        print(f"\n{c1} {c} equivale a {round(c2, 2)} {cp}")
+        print("\n" + "=" * fig) # Linha divisória para organização da saída
 
     except ValueError:
 
@@ -376,6 +412,10 @@ def Vol():
 
             print("\nOperação inválida. Tente novamente.")
             return
+        
+        if c == cp:
+            print("\nAs unidades são iguais. A conversão não é necessária.")
+            return
 
         c1 = float(input(f"\nDigite o valor em {c}: "))  
 
@@ -383,8 +423,8 @@ def Vol():
 
         c2 = vmc / fatores_vol[cp]  # Converte para a unidade desejada
 
-        print(f"\n{c1} {c} equivale a {c2} {cp}")
-        print("\n" + "=" * fig)
+        print(f"\n{c1} {c} equivale a {round(c2, 2)} {cp}")
+        print("\n" + "=" * fig) # Linha divisória para organização da saída
 
     except ValueError:
 
@@ -413,6 +453,10 @@ def Massa():
 
             print("\nOperação inválida. Tente novamente.")
             return
+        
+        if c == cp:
+            print("\nAs unidades são iguais. A conversão não é necessária.")
+            return
 
         c1 = float(input(f"\nDigite o valor em {c}: "))  
 
@@ -420,8 +464,8 @@ def Massa():
 
         c2 = vm / fatores_mass[cp]  # Converte para a unidade desejada
 
-        print(f"\n{c1} {c} equivale a {c2} {cp}")
-        print("\n" + "=" * fig)
+        print(f"\n{c1} {c} equivale a {round(c2, 2)} {cp}")
+        print("\n" + "=" * fig) # Linha divisória para organização da saída
 
     except ValueError:
 
@@ -450,6 +494,10 @@ def Cap():
 
             print("\nOperação inválida. Tente novamente.")
             return
+        
+        if c == cp:
+            print("\nAs unidades são iguais. A conversão não é necessária.")
+            return
 
         c1 = float(input(f"\nDigite o valor em {c}: "))  
 
@@ -457,8 +505,8 @@ def Cap():
 
         c2 = t / fatores_cap[cp]  # Converte para a unidade desejada
 
-        print(f"\n{c1} {c} equivale a {c2} {cp}")
-        print("\n" + "=" * fig)
+        print(f"\n{c1} {c} equivale a {round(c2, 2)} {cp}")
+        print("\n" + "=" * fig) # Linha divisória para organização da saída
 
     except ValueError:
 
@@ -487,6 +535,10 @@ def Temp():
 
             print("\nOperação inválida. Tente novamente.")
             return
+        
+        if c == cp:
+            print("\nAs unidades são iguais. A conversão não é necessária.")
+            return
 
         c1 = float(input(f"\nDigite o valor em {c}: "))  
 
@@ -495,7 +547,93 @@ def Temp():
         c2 = t / fatores_temp[cp]  # Converte para a unidade desejada
 
         print(f"\n{c1} {c} equivale a {c2} {cp}")
-        print("\n" + "=" * fig)
+        print("\n" + "=" * fig) # Linha divisória para organização da saída
+
+    except ValueError:
+
+        print("\nErro: Certifique-se de inserir um número válido.")
+
+def Dados():
+
+    """
+    Função para conversão de unidades de dados entre diferentes medidas (b, kb, mb, gb, tb, pb, eb, zb, yb).
+    Utiliza um fator de conversão baseado no tamanho em bytes.
+    """
+
+    try:
+        print("\nAqui convertemos unidades de dados: b, kb, mb, gb, tb, pb, eb, zb, yb")
+        
+        c = input("\nO que você quer converter: ").lower()
+
+        if c not in fatores_dado:
+            print("\nOperação inválida. Tente novamente.")
+            return 
+
+        cp = input("\nConverter para: ").lower()
+
+        if cp not in fatores_dado:
+            print("\nOperação inválida. Tente novamente.")
+            return
+        
+        if c == cp:
+            print("\nAs unidades são iguais. A conversão não é necessária.")
+            return
+        
+        c1 = Decimal(input(f"\nDigite o valor em {c}: "))  
+
+        t = c1 * fatores_dado[c]  # Converte para a unidade base (bytes)
+
+        c2 = t / fatores_dado[cp]  # Converte para a unidade desejada
+
+        # Ajuste dinâmico de exibição
+        if c2 >= 1:
+
+            c2 = c2.quantize(Decimal('0.01'))  # Mantém 2 casas decimais
+
+        else:
+
+            c2 = c2.normalize()  # Remove zeros desnecessários
+
+        print(f"\n{c1} {c} equivale a {c2} {cp}")
+        print("\n" + "=" * fig) # Linha divisória para organização da saída
+
+    except ValueError:
+
+        print("\nErro: Certifique-se de inserir um número válido.")
+
+def Pera():
+
+    """
+    Função para conversão de temperatura entre Celsius, Fahrenheit e Kelvin.
+    """
+
+    try:
+        print("\nAqui convertemos temperaturas: Celsius (c), Fahrenheit (f), Kelvin (k)")
+        
+        c = input("\nO que você quer converter: ").lower()
+
+        if c not in ["c", "f", "k"]:
+            print("\nOperação inválida. Tente novamente.")
+            return 
+
+        cp = input("\nConverter para: ").lower()
+
+        if cp not in ["c", "f", "k"]:
+            print("\nOperação inválida. Tente novamente.")
+            return
+        
+        if c == cp:
+            print("\nAs unidades são iguais. A conversão não é necessária.")
+            return
+
+        c1 = float(input(f"\nDigite o valor em {c.upper()}: "))  
+
+        chave = f"{c}_{cp}"  # Cria a chave para acessar a conversão no dicionário
+
+        c2 = fatores_pera[chave](c1)  # Aplica a conversão correspondente
+
+        print(f"\n{c1} {c.upper()} equivale a {round(c2, 2)} {cp.upper()}")
+        print("\n" + "=" * fig) # Linha divisória para organização da saída
 
     except ValueError:
 
@@ -560,7 +698,7 @@ def Md():
         # Loop para solicitar os elementos
         for i in range(qtd):
 
-            v = float(input(f"\nDigite o {i+1}º valor: "))
+            v = float(input(f"Digite o {i+1}º valor: "))
             vs.append(v)
 
         # Calcula a frequência dos valores
@@ -1526,7 +1664,8 @@ def comando_secreto(op):
         "pm": PM, "arrs": Arrs, "cbs": Cbs,"pa": PA, "pg": PG, "gp": GP, "f2g": Bhaskara, # Operações avançadas matemáticas
         "raizq": Raiz, "log": Log, "js": JS, "jc": JC,  # Operações avançadas matemáticas
         "comprimento": Com, "area": Area, "volume": Vol,  # Conversões de unidades
-        "massa": Massa, "capacidade": Cap, "tempo": Temp  # Conversões de unidades
+        "massa": Massa, "capacidade": Cap, "tempo": Temp,  # Conversões de unidades
+        "dados": Dados, "temperatura": Pera  # Conversões de unidades
 
     }
 
@@ -1640,7 +1779,8 @@ def sub3_pag():
         conversoes = {
 
             "comprimento": Com, "area": Area, "volume": Vol,  # Conversões de unidades de comprimento, área e volume
-            "massa": Massa, "capacidade": Cap, "tempo": Temp  # Conversões de unidades de massa, capacidade e tempo
+            "massa": Massa, "capacidade": Cap, "tempo": Temp,  # Conversões de unidades de massa, capacidade e tempo
+            "dados": Dados, "temperatura": Pera
 
         }
 
@@ -1679,7 +1819,7 @@ while True:
         comando_secreto(op)
 
     # Para conversões que requerem um comando secreto
-    elif op in ["comprimento", "area", "volume", "massa", "tempo", "capacidade"]:
+    elif op in ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "dados", "temperatura"]:
         comando_secreto(op)
     
 #############################################################################################################################
