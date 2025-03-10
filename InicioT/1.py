@@ -118,7 +118,7 @@ fig = 110
 opI = ["+", "-", "/", "*", "%", "^", "pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raizq", "log", "js", "jc", "media", "moda", "mediana", "comprimento", "area", "volume", "massa", "tempo", "capacidade", "dados", "temperatura", "subpag", "subsubpag", "subpag3"] # Opções para a tela inicial, junto com comando segreto
 opS = ["pm", "arrs", "cbs", "pa", "pg", "gp", "f2g", "raizq", "log", "js", "jc", "subpag", "voltar"] # Opções para a tela secundária
 opSS = ["media", "moda", "mediana", "subpag", "voltar"] # Opções para a tela terciária
-opSSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "dados", "temperatura", "voltar"] # opções para a tela 
+opSSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "dados", "temperatura", "voltar"] # opções para a tela quartenária
 
 com = ["mm", "cm", "dm", "m", "dam", "hm", "km"] # Comprimento
 area = ["mm2", "cm2", "dm2", "m2", "dam2", "hm2", "km2"] # Área
