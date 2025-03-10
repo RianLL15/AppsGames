@@ -212,16 +212,16 @@ fatores_pera = {
 # Dicionário para conversão de unidades de dados
 fatores_dado = {
 
-    "b": Decimal(1),
-    "kb": Decimal(1024),
-    "mb": Decimal(1024)**2,
-    "gb": Decimal(1024)**3,
-    "tb": Decimal(1024)**4,
-    "pb": Decimal(1024)**5,
-    "eb": Decimal(1024)**6,
-    "zb": Decimal(1024)**7,
-    "yb": Decimal(1024)**8
-}
+    "b": Decimal(1),  # Byte (unidade base)
+    "kb": Decimal(1024),  # Kilobyte = 1024 bytes
+    "mb": Decimal(1024)**2,  # Megabyte = 1024 Kilobytes
+    "gb": Decimal(1024)**3,  # Gigabyte = 1024 Megabytes
+    "tb": Decimal(1024)**4,  # Terabyte = 1024 Gigabytes
+    "pb": Decimal(1024)**5,  # Petabyte = 1024 Terabytes
+    "eb": Decimal(1024)**6,  # Exabyte = 1024 Petabytes
+    "zb": Decimal(1024)**7,  # Zetabyte = 1024 Exabytes
+    "yb": Decimal(1024)**8  # Yottabyte = 1024 Zetabytes
+    }
 
 def Inicio():
 
