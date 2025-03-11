@@ -9,8 +9,6 @@
 # print(n1 - n2)
 # print(n1 / n2)
 # print(n1 * n2)
-# print(n1 ** n2)
-# print(n1 * (n2 / 100))
 
 #############################################################################################################################
 
@@ -22,12 +20,17 @@
 # n1 = int(input("Escolha o primeiro número: ")) 
 # n2 = int(input("\nEscolha o segundo número: "))
 
-# print(f"n1 + n2")
-# print(n1 - n2)
-# print(n1 / n2)
-# print(n1 * n2)
-# print(n1 ** n2)
-# print(n1 * (n2 / 100))
+# soma = n1 + n2
+# mult = n1 * n2
+# div = n1 / n2
+# sub = n1 - n2
+
+
+# print(f"A soma de {n1} mais {n2} é igual a {soma}")
+# print(f"A multiplicação de {n1} mais {n2} é igual a {mult}")
+# print(f"A divisão de {n1} mais {n2} é igual a {div}")
+# print(f"A subtração de {n1} mais {n2} é igual a {sub}")
+
 
 #############################################################################################################################
 
