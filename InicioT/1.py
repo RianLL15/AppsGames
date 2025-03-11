@@ -669,7 +669,7 @@ def Me():
         media = soma / qtd
 
         # Exibe a fórmula
-        print("\nA fórmula da média é: Me = n1 + n2 +.../ n")
+        print("\nA fórmula da média é: M = a1 + a2 +.../ n")
         print(f"\nMe = {' + '.join(map(str, vs))} / {qtd}")
         print(f"\nMe = {soma} / {qtd}")
         print(f"\nA média dos valores é {media}")
@@ -974,6 +974,11 @@ def JC():
         vf = c * (1 + t) ** p  # Fórmula dos juros compostos: VF = C * (1 + i) ^ t
         j = vf - c  # Calcula os juros acumulados
 
+        #Exibe a fórmula
+        print("\nA fórmula de Juros compostos é: M = C(1 + i)ᵗ")
+        print("\nA fórmula do montante é: M = C + J") 
+
+        # Exibe o processo completo do cálculo
         print(f"\nO valor final após o período de tempo é de R$: {round(vf, 2)}") 
         print(f"\nO total de juros acumulados é de R$: {round(j, 2)}")
         print("\n" + "=" * fig)  # Linha divisória para organização da saída
@@ -1007,6 +1012,11 @@ def JS():
         j = (c * i * t) / 100  # Fórmula dos juros simples: J = C * i * t
         m = c + j  # Calcula o montante total
 
+        #Exibe a fórmula
+        print("\nA fórmula de Juros simples é: J = C x i x t")
+        print("\nA fórmula do montante é: M = C + J")  
+
+        # Exibe o processo completo do cálculo
         print(f"\nO juros simples é: R$ {round(j, 2)}")
         print(f"\nO montante total após {t} meses será: R$ {round(m, 2)}")
         print("\n" + "=" * fig)  # Linha divisória para organização da saída
@@ -1685,7 +1695,14 @@ def Porc():
         n1 = float(input("\nEscolha a porcentagem: "))
         n2 = float(input("\nEscolha um número: "))  
         r = round(n1 * (n2 / 100), 2)  # Calcula a porcentagem do número.
+        div = n1 / 100
+
+        #Exibe a fórmula
+        print("\nA fórmula da porcentagem é: (n1 / 100) x n2")
+
+        # Exibe o processo completo do cálculo
         print(f"\n{n1} por cento de {n2} é igual a {r}")
+        print(f"\nPorém ele pode ser escrito {n2} por cento de {n1} é igual {r}")
 
         print("\n" + "=" * fig) # Linha divisória para organização da saída
 
