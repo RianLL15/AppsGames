@@ -1,8 +1,15 @@
 import pygame
 import random
+import math
+import time
+from math import inf
 
 # Inicializa o pygame
 pygame.init()
+
+#Sons interativos
+Erro = pygame.mixer.Sound('AppsGames-main\\Som\\P3IT\\errou-rude.wav')
+Special = pygame.mixer.Sound('AppsGames-main\\Som\\P3IT\\ai-meu-c-zinho-w-penelope-di-monaco.wav')
 
 # Configurações da tela
 WIDTH, HEIGHT = 500, 400
@@ -83,7 +90,7 @@ while running:
 
                         if chute == numero_secreto:
 
-                            mensagem = f"🎉 Correto! O número era {numero_secreto}!"
+                            mensagem = f"Correto! O número era {numero_secreto}!"
                             acertou = True  # Ativa a opção de continuar
 
                         else:
@@ -97,20 +104,23 @@ while running:
                                 if chute < numero_secreto:
 
                                     mensagem = "Muito baixo!"
+                                    Erro.play()
 
                                 else:
 
                                     mensagem = "Muito alto!"
-
+                                    Erro.play()
                             else:
 
                                 if chute < numero_secreto:
 
                                     mensagem = "Muito baixo!"
+                                    Erro.play()
 
                                 else:
 
                                     mensagem =  "Muito alto!"
+                                    Erro.play()
 
                             if modo_dificil:  # Se estiver no modo difícil, reduz tentativas
 
@@ -161,6 +171,7 @@ while running:
         
         restart_text = font_small.render("Deseja jogar novamente? (y/n)", True, BLACK)
         screen.blit(restart_text, (WIDTH // 2 - restart_text.get_width() // 2, 300))
+        Special.play()
 
     pygame.display.flip()
 
