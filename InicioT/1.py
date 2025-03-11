@@ -115,8 +115,8 @@ from decimal import Decimal, getcontext
 getcontext().prec = 100  # Define precisão alta para cálculos
 
 fig = 110
-opI = ["+", "-", "/", "*", "%", "^", "pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raizq", "log", "js", "jc", "media", "moda", "mediana", "comprimento", "area", "volume", "massa", "tempo", "capacidade", "dados", "temperatura", "subpag", "subsubpag", "subpag3"] # Opções para a tela inicial, junto com comando segreto
-opS = ["pm", "arrs", "cbs", "pa", "pg", "gp", "f2g", "raizq", "log", "js", "jc", "subpag", "voltar"] # Opções para a tela secundária
+opI = ["+", "-", "/", "*", "%", "^", "pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raiz", "log", "js", "jc", "media", "moda", "mediana", "comprimento", "area", "volume", "massa", "tempo", "capacidade", "dados", "temperatura", "subpag", "subsubpag", "subpag3"] # Opções para a tela inicial, junto com comando segreto
+opS = ["pm", "arrs", "cbs", "pa", "pg", "gp", "f2g", "raiz", "log", "js", "jc", "subpag", "voltar"] # Opções para a tela secundária
 opSS = ["media", "moda", "mediana", "subpag", "voltar"] # Opções para a tela terciária
 opSSS = ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "dados", "temperatura", "voltar"] # opções para a tela quartenária
 
@@ -153,6 +153,7 @@ fatores_area = {
 
 # Dicionário para conversão de unidades de volume
 fatores_vol = {
+
     "mm3": 0.000000001,  # Milímetro cúbico para metro cúbico
     "cm3": 0.000001,     # Centímetro cúbico para metro cúbico
     "dm3": 0.001,        # Decímetro cúbico para metro cúbico
@@ -164,6 +165,7 @@ fatores_vol = {
 
 # Dicionário para conversão de unidades de massa
 fatores_mass = {
+
     "mg": 0.01,   # Miligrama para decigrama
     "cg": 0.1,    # Centigrama para decigrama
     "dg": 1,      # Decigrama (unidade base)
@@ -175,6 +177,7 @@ fatores_mass = {
 
 # Dicionário para conversão de unidades de tempo
 fatores_temp = {
+
     "ms": 0.001,       # Milissegundo para segundos
     "seg": 1,          # Segundo (unidade base)
     "min": 60,         # Minuto para segundos
@@ -253,7 +256,7 @@ def SubP():
     while True:
         
         print("\n" + "=" * fig)
-        print("\nTemos essas opções de operação: pm, arrs, cbs, pa, pg, gp, ge, f2g, raizq, log, js, jc, subpag, voltar")
+        print("\nTemos essas opções de operação: pm, arrs, cbs, pa, pg, gp, ge, f2g, raiz, log, js, jc, subpag, voltar")
         sub_op = input("\nEscolha a operação: ").lower()
 
         if sub_op in opS:  # Verifica se a operação escolhida está na lista de operações secundárias válidas
@@ -1278,7 +1281,8 @@ def GP():
         else:
 
             print("\nOpção inválida. Escolha uma das formas geométricas mencionadas.")
-            print("\n" + "=" * fig)
+
+        print("\n" + "=" * fig)
 
     except ValueError:
 
@@ -1428,6 +1432,8 @@ def Log():
 
         # Calcula o logaritmo e arredonda o resultado para duas casas decimais.
         r = round(math.log(n1, n2), 2)
+
+        print("A fórmula do logaritmo é: log b(a) = x, onde b^x = a")
         print(f"\nLogaritmo de {n1} na base {n2} é igual a {r}")
 
         print("\n" + "=" * fig) # Linha divisória para organização da saída
@@ -1439,22 +1445,59 @@ def Log():
 def Raiz():
 
     """
-    Calcula a raiz quadrada de um número inteiro não negativo.
+    Calcula a raiz quadrada e cúbica de um número inteiro não negativo.
     """
 
     try:
 
-        n1 = int(input("\nEscolha um número: "))
+        print("\nAs opções de raiz são: quadrada, cubica, quarta")
+        raiz = input("\nEscolha um tipo de raiz: ").lower()
 
-        # Verifica se o número é negativo, pois não é possível calcular a raiz quadrada de números negativos.
-        if n1 < 0:
+        if raiz == "quadrada":
 
-            print("\nNão é possível calcular a raiz quadrada de um número negativo")
+            n1 = int(input("\nEscolha o radicando: "))
 
-        else:
+            # Verifica se o número é negativo, pois não é possível calcular a raiz quadrada de números negativos.
+            if n1 < 0:
 
-            r = math.sqrt(n1)  # Calcula a raiz quadrada.
-            print(f"\nA raiz quadrada de {n1} é igual a {r}")
+                print("\nNão é possível calcular a raiz quadrada de um número negativo")
+
+            else:
+
+                r = math.sqrt(n1)  # Calcula a raiz quadrada.
+                print(f"\nA raiz quadrada de {n1} é igual a {r}")
+        
+        elif raiz == "cubica":
+            
+            n1 = int(input("\nEscolha o radicando: "))
+
+            # Verifica se o número é negativo, pois não é possível calcular a raiz cúbica de números negativos.
+            if n1 < 0:
+
+                print("\nNão é possível calcular a raiz cúbica de um número negativo")
+
+            else:
+
+                r = n1 ** (1/3)  # Calcula a raiz cúbica.
+                print(f"\nA raiz cúbica de {n1} é igual a {round(r, 2)}")
+        
+        elif raiz == "quarta":
+            
+            n1 = int(input("\nEscolha o radicando: "))
+
+            # Verifica se o número é negativo, pois não é possível calcular a raiz quarta de números negativos.
+            if n1 < 0:
+
+                print("\nNão é possível calcular a raiz quarta de um número negativo")
+
+            else:
+
+                r = n1 ** (1/4)  # Calcula a raiz quarta.
+                print(f"\nA raiz quarta de {n1} é igual a {round(r, 2)}")
+
+        else: 
+
+            print("\nOpção inválida. Escolha uma das raizes mencionadas.")
 
         print("\n" + "=" * fig) # Linha divisória para organização da saída
 
@@ -1485,7 +1528,7 @@ def Add():
             numeros.append(num)
             t += num  # Soma os valores
 
-        print("\nA fórmula da soma é: n1 + n2 +...")
+        print("\nA fórmula da soma é: n1 + n2 + n3...")
         print(f"\n{' + '.join(map(str, numeros))}")
         print(f"\nA soma dos {qtd} números é {t}")
 
@@ -1523,7 +1566,7 @@ def Sub():
 
             t -= num  # Subtrai os valores
 
-        print("\nA fórmula da subtração é: n1 - n2 -...")
+        print("\nA fórmula da subtração é: n1 - n2 - n3...")
         print(f"\n{' - '.join(map(str, numeros))}")
         print(f"\nO resultado da subtração dos {qtd} números é {t}")
 
@@ -1557,7 +1600,7 @@ def Mult():
             numeros.append(num)
             t *= num  # Multiplica os valores
 
-        print("\nA fórmula da multiplicação é: n1 × n2 ×...")
+        print("\nA fórmula da multiplicação é: n1 × n2 × n3 ×...")
         print(f"\n{' × '.join(map(str, numeros))}")
         print(f"\nO resultado da multiplicação dos {qtd} números é {t}")
 
@@ -1600,7 +1643,7 @@ def Div():
 
             t /= num  # Divide os valores
 
-        print("\nA fórmula da divisão é: n1 ÷ n2 ÷...")
+        print("\nA fórmula da divisão é: n1 ÷ n2 ÷ n3 ÷...")
         print(f"\n{' ÷ '.join(map(str, numeros))}")
         print(f"\nO resultado da divisão dos {qtd} números é: {t}")
 
@@ -1618,12 +1661,12 @@ def Elev():
 
     try:
 
-        n1 = float(input("\nEscolha o primeiro número: ")) 
-        n2 = float(input("\nEscolha o segundo número: "))  
+        n1 = float(input("\nEscolha a base: ")) 
+        n2 = float(input("\nEscolha o expoente: "))  
         r = n1 ** n2  # Realiza a operação de exponenciação.
 
-        print("\nA fórmula da divisão é: n1ⁿ = n1 x n1...(n vezes)")
-        print(f"\n{n1} elevado a {n2} é igual a {r}")
+        print("\nA fórmula da potência é: bⁿ = b x b...(n vezes)")
+        print(f"\nA base {n1} elevado ao expoente {n2} é igual a {r}")
 
         print("\n" + "=" * fig) # Linha divisória para organização da saída
 
@@ -1640,7 +1683,7 @@ def Porc():
     try:
 
         n1 = float(input("\nEscolha a porcentagem: "))
-        n2 = float(input("\nEscolha o número: "))  
+        n2 = float(input("\nEscolha um número: "))  
         r = round(n1 * (n2 / 100), 2)  # Calcula a porcentagem do número.
         print(f"\n{n1} por cento de {n2} é igual a {r}")
 
@@ -1662,7 +1705,7 @@ def comando_secreto(op):
 
         "media": Me, "moda": Md, "mediana": Med,   # Operações avançadas matemáticas
         "pm": PM, "arrs": Arrs, "cbs": Cbs,"pa": PA, "pg": PG, "gp": GP, "f2g": Bhaskara, # Operações avançadas matemáticas
-        "raizq": Raiz, "log": Log, "js": JS, "jc": JC,  # Operações avançadas matemáticas
+        "raiz": Raiz, "log": Log, "js": JS, "jc": JC,  # Operações avançadas matemáticas
         "comprimento": Com, "area": Area, "volume": Vol,  # Conversões de unidades
         "massa": Massa, "capacidade": Cap, "tempo": Temp,  # Conversões de unidades
         "dados": Dados, "temperatura": Pera  # Conversões de unidades
@@ -1709,7 +1752,7 @@ def sub_pag():
         opSub = {
 
             "pm": PM, "arrs": Arrs, "cbs": Cbs,"pa": PA, "pg": PG,  # Operações avançadas matemáticas
-            "gp": GP, "f2g": Bhaskara, "raizq": Raiz, "log": Log, "js": JS, "jc": JC  # Mais operações
+            "gp": GP, "f2g": Bhaskara, "raiz": Raiz, "log": Log, "js": JS, "jc": JC  # Mais operações
 
         }
 
@@ -1815,7 +1858,7 @@ while True:
         pag(op)
 
     # Para operações avançadas que requerem um comando secreto
-    elif op in ["pm", "arrs", "cbs", "pa", "pg", "gp", "f2g", "raizq", "log", "js", "jc", "media", "moda", "mediana"]:
+    elif op in ["pm", "arrs", "cbs", "pa", "pg", "gp", "f2g", "raiz", "log", "js", "jc", "media", "moda", "mediana"]:
         comando_secreto(op)
 
     # Para conversões que requerem um comando secreto
