@@ -240,7 +240,7 @@ def Inicio():
 
         print("\n" + "=" * fig)        
         print("\nTemos essas opções de operação: +, -, /, *, %, ^, subpag")
-        op = input("\nEscolha a operação: ").lower()
+        op = input("\nEscolha a operação: ").lower().strip()
 
         if op in opI: # Verifica se a operação escolhida está na lista de operações válidas
 
@@ -260,7 +260,7 @@ def SubP():
         
         print("\n" + "=" * fig)
         print("\nTemos essas opções de operação: pm, arrs, cbs, pa, pg, gp, ge, f2g, raiz, log, js, jc, subpag, voltar")
-        sub_op = input("\nEscolha a operação: ").lower()
+        sub_op = input("\nEscolha a operação: ").lower().strip()
 
         if sub_op in opS:  # Verifica se a operação escolhida está na lista de operações secundárias válidas
 
@@ -281,7 +281,7 @@ def SubSubP():
 
         print("\n" + "=" * fig)
         print("\nTemos essas opções de operação: media, moda, mediana, subpag, voltar")
-        subsub_op = input("\nEscolha a operação: ").lower()
+        subsub_op = input("\nEscolha a operação: ").lower().strip()
 
         if subsub_op in opSS:  # Verifica se a opção escolhida está na lista de conversões válidas
 
@@ -302,7 +302,7 @@ def Sub3P():
 
         print("\n" + "=" * fig)
         print("\nAqui convertemos: comprimento, area, volume, massa, capacidade, tempo, temperatura, dados voltar")
-        sub3_op = input("\nO que você quer converter: ").lower()
+        sub3_op = input("\nO que você quer converter: ").lower().strip()
 
         if sub3_op in opSSS:  # Verifica se a opção escolhida está na lista de conversões válidas
 
@@ -970,18 +970,26 @@ def JC():
     try:
 
         c = float(input("\nQual é o valor principal (capital) em R$: "))
-        t = float(input("\nQual é a taxa de juros anual: "))
-        p = float(input("\nQual o período de tempo em anos: "))
+        i = float(input("\nQual é a taxa de juros anual: "))
+        t = float(input("\nQual o período de tempo em anos: "))
 
-        t = t / 100  # Convertendo a taxa percentual para decimal
-        vf = c * (1 + t) ** p  # Fórmula dos juros compostos: VF = C * (1 + i) ^ t
+        i = i / 100  # Convertendo a taxa percentual para decimal
+        vf = c * (1 + i) ** t  # Fórmula dos juros compostos: VF = C * (1 + i) ^ t
         j = vf - c  # Calcula os juros acumulados
 
         #Exibe a fórmula
-        print("\nA fórmula de Juros compostos é: M = C(1 + i)ᵗ")
+        print("\nA fórmula de Juros compostos é: M = C × (1 + i) ^ t")
         print("\nA fórmula do montante é: M = C + J") 
 
         # Exibe o processo completo do cálculo
+        print(f"\nM = {c} × (1 + {i})^{t}")
+        print(f"M = {c} × {1 + i}^{t}")
+        print(f"M = {c} × {round((1 + i) ** t, 2)}")
+        print(f"M = {round(c * ((1 + i) ** t), 2)}")
+
+        print(f"\nM = {c} + {round(j, 2)}")
+        print(f"M = {round(vf, 2)}")
+
         print(f"\nO valor final após o período de tempo é de R$: {round(vf, 2)}") 
         print(f"\nO total de juros acumulados é de R$: {round(j, 2)}")
         print("\n" + "=" * fig)  # Linha divisória para organização da saída
@@ -1002,7 +1010,7 @@ def JS():
     try:
 
         c = float(input("\nDigite o capital inicial em R$: "))
-        i = float(input("\nDigite a taxa de juros (% ao ano ou mês): "))
+        i = float(input("\nDigite a taxa de juros(coloque só o número): "))
 
         # Pergunta se o tempo está em anos ou meses
         tf = input("\nInforme se o tempo está em 'meses' ou 'anos': ").strip().lower()
@@ -1016,12 +1024,20 @@ def JS():
         m = c + j  # Calcula o montante total
 
         #Exibe a fórmula
-        print("\nA fórmula de Juros simples é: J = C x i x t")
+        print("\nA fórmula de Juros simples é: J = C × i × t")
         print("\nA fórmula do montante é: M = C + J")  
 
         # Exibe o processo completo do cálculo
+        print(f"\nJ = {c} × {i} × {t} / 100")
+        print(f"J = {c * i * t} / 100")
+        print(f"J = {(c * i * t) / 100}")
+
+
+        print(f"\nM = {c} + {j}")
+        print(f"M = {c + j}")
+
         print(f"\nO juros simples é: R$ {round(j, 2)}")
-        print(f"\nO montante total após {t} meses será: R$ {round(m, 2)}")
+        print(f"O montante total após {t} meses será: R$ {round(m, 2)}")
         print("\n" + "=" * fig)  # Linha divisória para organização da saída
 
     except ValueError:
@@ -1051,6 +1067,12 @@ def GP():
             
             l = float(input("\nDigite um lado do quadrado: "))
             r = l ** 2  # Área do quadrado: lado²
+
+            #Exibe a fórmula
+            print(f"\nA fórmula do quadrado é: Área = lado²")
+
+            # Exibe o processo completo do cálculo
+            print(f"\nÁrea = {l}²")
             print(f"\nA área do quadrado é igual a {r}")
 
         # Se a forma escolhida for 'retângulo', calcula a área
@@ -1059,6 +1081,9 @@ def GP():
             b = float(input("\nDigite a base do retângulo: "))
             h = float(input("\nDigite a altura do retângulo: "))
 
+            #Exibe a fórmula
+            print(f"\nA fórmula do retângulo é: Área = base × altura")
+
             if b == h:
 
                 print("\nIsso não é um retângulo!")
@@ -1066,6 +1091,9 @@ def GP():
             else:
 
                 r = b * h  # Área do retângulo: base * altura
+
+                # Exibe o processo completo do cálculo
+                print(f"\nÁrea = {b} × {h}")
                 print(f"\nA área do retângulo é igual a {r}")
 
         # Se a forma escolhida for 'triângulo', oferece opções de tipos de triângulo
@@ -1091,11 +1119,23 @@ def GP():
 
                     a = math.sqrt(b**2 + c**2)  # Calcular a hipotenusa
 
+                    #Exibe a fórmula
+                    print(f"\nA fórmula do 2 grau é: hipotenusa² = cateto1² + cateto2²")
+
+                    # Exibe o processo completo do cálculo
+                    print(f"\na² = {b}² + {c}² -> a = √{b**2 + c**2}")
+
                 elif b is None and a is not None and c is not None:
 
                     if a > c:
 
                         b = math.sqrt(a**2 - c**2)  # Calcular o primeiro cateto
+
+                        #Exibe a fórmula
+                        print(f"\nA fórmula do 2 grau é: cateto1² = hipotenusa² - cateto2²")
+
+                        # Exibe o processo completo do cálculo
+                        print(f"\nb² = {a}² - {c}² -> b = √{a**2 - c**2}")
 
                     else:
 
@@ -1107,6 +1147,12 @@ def GP():
                     if a > b:
 
                         c = math.sqrt(a**2 - b**2)  # Calcular o segundo cateto
+
+                        #Exibe a fórmula
+                        print(f"\nA fórmula do 2 grau é: cateto2² = hipotenusa² - cateto1²")
+
+                        # Exibe o processo completo do cálculo
+                        print(f"\nc² = {a}² - {b}² -> c = √{a**2 - b**2}")
 
                     else:
 
@@ -1120,8 +1166,8 @@ def GP():
 
                 # Exibe os resultados dos cálculos
                 print(f"\nO valor da hipotenusa é igual a {a}")
-                print(f"\nO valor do primeiro cateto(b) é igual a {b}")
-                print(f"\nO valor do segundo cateto(c) é igual a {c}")
+                print(f"O valor do primeiro cateto(b) é igual a {b}")
+                print(f"O valor do segundo cateto(c) é igual a {c}")
 
                 # Verifica se o triângulo é pitagórico perfeito (números inteiros e satisfaz a equação)
                 if a.is_integer() and b.is_integer() and c.is_integer():
@@ -1146,7 +1192,14 @@ def GP():
                 l = float(input("\nDigite um lado do triângulo: "))
                 r = ((l ** 2) * math.sqrt(3)) / 4  # Área do triângulo equilátero: (lado² * √3) / 4
 
-                print(f"\nA área do triângulo equilátero é igual a {r}")
+                #Exibe a fórmula
+                print(f"\nA fórmula do triângulo equilátero: Área = lado² × √3 / 4")
+
+                # Exibe o processo completo do cálculo
+                print(f"\nÁrea = {l}² × √3 / 4")
+                print(f"Área = {l**2} × √3 / 4")
+                print(f"Área = {l**2 * math.sqrt(3)} / 4")
+                print(f"A área do triângulo equilátero é igual a {r}")
 
             # Cálculos para o triângulo escaleno
             elif top == "escaleno":
@@ -1160,8 +1213,19 @@ def GP():
                     p = (a + b + c) / 2  # Semi-perímetro: (a + b + c) / 2
                     area = math.sqrt((p * (p - a) * (p - b) * (p - c)))  # Fórmula de Heron
 
-                    print(f"\nO valor do semi-perímetro é igual a {p}")
-                    print(f"\nA área desse triângulo é igual a {area}")
+                    #Exibe a fórmula
+                    print(f"\nA fórmula do semi-perímetro é: P = a + b + c / 2")
+                    print(f"\nA fórmula de Heron é: Área = √p × (p - a) × (p - b) × (p - c)")
+
+                    # Exibe o processo completo do cálculo
+                    print(f"\nP = {a} + {b} + {c} / 2")
+                    print(f"P = {a + b + c} / 2")
+                    print(f"P = {(a + b + c) / 2}")
+
+                    print(f"\nÁrea = √{p} × ({p} - {a}) × ({p} - {b}) × ({p} - {c})")
+                    print(f"Área = √{p} × {p-a} × {p-b} × {p-c}")
+                    print(f"Área = √{round(p * (p-a)  * (p-b) * (p-c), 2)}")
+                    print(f"Área = {round(area, 2)}")
 
                 else:
 
@@ -1229,6 +1293,10 @@ def GP():
                 else:
 
                     print("\nNão foi possível calcular a área, pois faltam informações.")
+
+            else:
+
+                print("\nOpção inválida. Escolha uma dos triângulos mencionados.")
 
         # Cálculos para o círculo
         elif Fg == "circulo":
@@ -1327,7 +1395,14 @@ def PA():
 
         termo_n = a1 + (an - 1) * r  # Fórmula do termo geral da PA
 
-        print("\nA fórmula da PA é An = a1 + (n - 1) x r")
+        #Exibe a fórmula
+        print("\nA fórmula da PA é An = a1 + (n - 1) × r")
+
+        # Exibe o processo completo do cálculo
+        print(f"\nCálculo do {an}º termo:")
+        print(f"An = {a1} + ({an} - 1) × {r}")
+        print(f"An = {a1} + {an - 1} × {r}")
+        print(f"An = {a1} + {r * (an - 1)}")
         print(f"\nO {an}º termo da PA é: {termo_n}")
         print("\n" + "=" * fig)  # Linha divisória para organização da saída
 
@@ -1362,8 +1437,16 @@ def PG():
 
         termo_n = a1 * (r ** (an - 1))  # Fórmula do termo geral da PG
 
-        print("\nA fórmula da PG é An = a1 x r ^n-1")
-        print(f"\nO {an}º termo da PG é: {termo_n}")
+        #Exibe a fórmula
+        print("\nA fórmula da PG é An = a1 x r^(n-1)")
+
+        # Exibe o processo completo do cálculo
+        print(f"\nCálculo do {an}º termo:")
+        print(f"An = {a1} * {r}^({an} - 1)")
+        print(f"An = {a1} * {r}^{an - 1}")
+        print(f"An = {a1} * {r ** (an - 1)}")
+        print(f"\nO {an}º termo da PG é: {termo_n}")            
+
         print("\n" + "=" * fig)  # Linha divisória para organização da saída
 
     except ValueError:
@@ -1384,20 +1467,46 @@ def Bhaskara():
         c = int(input("\nQual o valor de c: "))
 
         # Calcula o discriminante (delta) da equação.
-        delta = b ** 2 - 4 * a * c
+        de = b ** 2
+        lta = 4 * a * c
+        delta = de - lta
+
+
+        #Exibe a fórmula
+        print("\nA fórmula de Bhaskara é: x = (-b ± √(b² - 4 × a × c)) / 2a")
+
+        # Exibe o processo completo do cálculo
+        print(f"\nCálculo de delta: delta = b² - 4 × a × c = {b}² - 4 × {a} × {c} = {de} - {lta} = {delta}")
 
         # Se o delta for igual a 0, a equação possui apenas uma raiz real.
         if delta == 0:
 
-            X1 = (-b + math.sqrt(delta)) / (2 * a)  # Calcula a raiz única da equação.
-            print(f"\nA equação possui apenas uma raiz real: x' = {X1}")
+            X1 = (-b + math.sqrt(delta)) / (2 * a)  # Calcula a raiz única da equação.  
+
+            print("\nPelo delta ser igual a zero(0), tem apenas uma rais real, pois x' e x'' são iguais")
+
+            # Exibe o processo completo do cálculo
+            print(f"\nx' = -({b}) + √{delta} / 2 × {a}")
+            print(f"x' = {-b} + {math.sqrt(delta)} / {2 * a}")
+            print(f"x' = {-b + math.sqrt(delta)} / {2 * a}")
+            print(f"x' = {X1}")
 
         # Se o delta for maior que 0, a equação possui duas raízes reais distintas.
         elif delta > 0:
 
             X1 = (-b + math.sqrt(delta)) / (2 * a)  # Calcula a primeira raiz.
             X2 = (-b - math.sqrt(delta)) / (2 * a)  # Calcula a segunda raiz.
-            print(f"\nAs raízes da equação são: x' = {X1} e x'' = {X2}")
+
+            # Exibe o processo completo do cálculo
+            print(f"\nx' = -({b}) + √{delta} / 2 * {a}")
+            print(f"x' = {-b} + {math.sqrt(delta)} / {2 * a}")
+            print(f"x' = {-b + math.sqrt(delta)} / {2 * a}")
+            print(f"x' = {X1}")
+
+            print(f"\nx'' = -({b}) - √{delta} / 2 * {a}")
+            print(f"x'' = {-b} - {math.sqrt(delta)} / {2 * a}")
+            print(f"x'' = {-b - math.sqrt(delta)} / {2 * a}")
+            print(f"x'' = {X2}")
 
         # Se o delta for menor que 0, a equação não possui raízes reais.
         else:
@@ -1446,7 +1555,11 @@ def Log():
         # Calcula o logaritmo e arredonda o resultado para duas casas decimais.
         r = round(math.log(n1, n2), 2)
 
-        print("A fórmula do logaritmo é: log b(a) = x, onde b^x = a")
+        #Exibe a fórmula
+        print("\nA fórmula do logaritmo é: log b(a) = x, onde b^x = a")
+
+        # Exibe o processo completo do cálculo
+        print(f"\nlog {n1}({n2}) = x, onde {n1}^x = {n2}")
         print(f"\nLogaritmo de {n1} na base {n2} é igual a {r}")
 
         print("\n" + "=" * fig) # Linha divisória para organização da saída
@@ -1466,51 +1579,47 @@ def Raiz():
         print("\nAs opções de raiz são: quadrada, cubica, quarta")
         raiz = input("\nEscolha um tipo de raiz: ").lower()
 
-        if raiz == "quadrada":
+        if raiz in ["quadrada", "cúbica", "quarta"]:
 
-            n1 = int(input("\nEscolha o radicando: "))
+            n1 = float(input("\nEscolha o radicando: "))
 
-            # Verifica se o número é negativo, pois não é possível calcular a raiz quadrada de números negativos.
             if n1 < 0:
 
-                print("\nNão é possível calcular a raiz quadrada de um número negativo")
+                print(f"\nNão é possível calcular a raiz {raiz} de um número negativo")
+                return
+
+            if raiz == "quadrada":
+
+                r = n1 ** (1/2) 
+
+                #Exibe a fórmula
+                print("\nA fórmula da raiz quadrada é: √n = n^(1/2)") 
+
+                print(f"\n√{n1} = {n1}^(1/2)") # Exibe o processo completo do cálculo
+
+            elif raiz == "cúbica":
+
+                r = n1 ** (1/3)  
+                
+                #Exibe a fórmula
+                print("\nA fórmula da raiz cúbica é: ³√n = n^(1/3)")
+
+                print(f"\n³√{n1} = {n1}^(1/3)") # Exibe o processo completo do cálculo
 
             else:
 
-                r = math.sqrt(n1)  # Calcula a raiz quadrada.
-                print(f"\nA raiz quadrada de {n1} é igual a {r}")
-        
-        elif raiz == "cubica":
-            
-            n1 = int(input("\nEscolha o radicando: "))
+                r = n1 ** (1/4)  
+                
+                #Exibe a fórmula
+                print("\nA fórmula da raiz quarta é: ⁴√n = n^(1/4)") 
 
-            # Verifica se o número é negativo, pois não é possível calcular a raiz cúbica de números negativos.
-            if n1 < 0:
+                print(f"\n⁴√{n1} = {n1}^(1/4)") # Exibe o processo completo do cálculo
 
-                print("\nNão é possível calcular a raiz cúbica de um número negativo")
+            print(f"\nA raiz {raiz} de {n1} é igual a {round(r, 2)}") # Exibe o processo completo do cálculo
 
-            else:
+        else:
 
-                r = n1 ** (1/3)  # Calcula a raiz cúbica.
-                print(f"\nA raiz cúbica de {n1} é igual a {round(r, 2)}")
-        
-        elif raiz == "quarta":
-            
-            n1 = int(input("\nEscolha o radicando: "))
-
-            # Verifica se o número é negativo, pois não é possível calcular a raiz quarta de números negativos.
-            if n1 < 0:
-
-                print("\nNão é possível calcular a raiz quarta de um número negativo")
-
-            else:
-
-                r = n1 ** (1/4)  # Calcula a raiz quarta.
-                print(f"\nA raiz quarta de {n1} é igual a {round(r, 2)}")
-
-        else: 
-
-            print("\nOpção inválida. Escolha uma das raizes mencionadas.")
+            print("\nOpção inválida. Escolha uma das raízes mencionadas.")
 
         print("\n" + "=" * fig) # Linha divisória para organização da saída
 
@@ -1541,7 +1650,10 @@ def Add():
             numeros.append(num)
             t += num  # Soma os valores
 
+        #Exibe a fórmula
         print("\nA fórmula da soma é: n1 + n2 + n3...")
+
+        # Exibe o processo completo do cálculo
         print(f"\n{' + '.join(map(str, numeros))}")
         print(f"\nA soma dos {qtd} números é {t}")
 
@@ -1579,7 +1691,10 @@ def Sub():
 
             t -= num  # Subtrai os valores
 
+        #Exibe a fórmula
         print("\nA fórmula da subtração é: n1 - n2 - n3...")
+
+        # Exibe o processo completo do cálculo
         print(f"\n{' - '.join(map(str, numeros))}")
         print(f"\nO resultado da subtração dos {qtd} números é {t}")
 
@@ -1613,7 +1728,11 @@ def Mult():
             numeros.append(num)
             t *= num  # Multiplica os valores
 
+        #Exibe a fórmula
         print("\nA fórmula da multiplicação é: n1 × n2 × n3 ×...")
+        print("Também pode ser escrita como: n1 * n2 * n3 *...")
+
+        # Exibe o processo completo do cálculo
         print(f"\n{' × '.join(map(str, numeros))}")
         print(f"\nO resultado da multiplicação dos {qtd} números é {t}")
 
@@ -1656,7 +1775,11 @@ def Div():
 
             t /= num  # Divide os valores
 
+        # Exibe a fórmula
         print("\nA fórmula da divisão é: n1 ÷ n2 ÷ n3 ÷...")
+        print("Também pode ser escrita como: n1 / n2 / n3 /...")
+
+        # Exibe o processo completo do cálculo
         print(f"\n{' ÷ '.join(map(str, numeros))}")
         print(f"\nO resultado da divisão dos {qtd} números é: {t}")
 
@@ -1675,12 +1798,23 @@ def Elev():
     try:
 
         n1 = float(input("\nEscolha a base: ")) 
-        n2 = float(input("\nEscolha o expoente: "))  
+        n2 = int(input("\nEscolha o expoente: "))  
         r = n1 ** n2  # Realiza a operação de exponenciação.
 
-        print("\nA fórmula da potência é: bⁿ = b x b...(n vezes)")
-        print(f"\nA base {n1} elevado ao expoente {n2} é igual a {r}")
+        #Exibe a fórmula
+        print("\nA fórmula da potência é: bⁿ = b × b × b...(n vezes)")
+        print("Também pode ser escrita como: b^n")
 
+        # Exibe o processo completo do cálculo
+        if n2 >= 0:
+
+            print(f"\n{n1}^{n2} = {' × '.join([str(n1)] * n2)}")
+
+        else:
+
+            print(f"\n{n1}^{n2} = 1 / {' × '.join([str(n1)] * abs(n2))}")
+
+        print(f"\nA base {n1} elevada ao expoente {n2} é igual a {r}")
         print("\n" + "=" * fig) # Linha divisória para organização da saída
 
     except ValueError:
@@ -1697,15 +1831,15 @@ def Porc():
 
         n1 = float(input("\nEscolha a porcentagem: "))
         n2 = float(input("\nEscolha um número: "))  
-        r = round(n1 * (n2 / 100), 2)  # Calcula a porcentagem do número.
-        div = n1 / 100
+        r = round((n1 / 100) * n2, 2)  # Calcula a porcentagem do número.
 
         #Exibe a fórmula
-        print("\nA fórmula da porcentagem é: (n1 / 100) x n2")
+        print("\nA fórmula da porcentagem é: (porcentagem / 100) × número")  
 
         # Exibe o processo completo do cálculo
-        print(f"\n{n1} por cento de {n2} é igual a {r}")
-        print(f"\nPorém ele pode ser escrito {n2} por cento de {n1} é igual {r}")
+        print(f"\n({n1} / 100) × {n2}")
+        print(f"\n{n1}% de {n2} é igual a {r}")
+        print(f"\nTambém pode ser escrito como, {n2}% de {n1} é igual a {r}")
 
         print("\n" + "=" * fig) # Linha divisória para organização da saída
 
