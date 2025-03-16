@@ -673,6 +673,8 @@ def Me():
 
         # Exibe a fórmula
         print("\nA fórmula da média é: M = a1 + a2 +.../ n")
+
+        # Exibe o processo e o resultado
         print(f"\nMe = {' + '.join(map(str, vs))} / {qtd}")
         print(f"\nMe = {soma} / {qtd}")
         print(f"\nA média dos valores é {media}")
@@ -798,7 +800,9 @@ def PM():
             print("\nA fórmula da permutação simples é: Pn = n!")
 
             # Exibe o processo e o resultado
-            print(f"\nPn = {n}!")
+            f_p = " x ".join(str(i) for i in range(n, 0, -1))  # Cria a sequência decrescente
+
+            print(f"\nPn = {n}! = {f_p}")
             print(f"\nO resultado dessa permutação simples é igual a {r}")
 
         # Permutação com Repetição
@@ -807,7 +811,7 @@ def PM():
             n = int(input("\nDigite o número total de elementos(n): "))  
 
             # Solicita a quantidade de grupos repetidos e os converte para uma lista de inteiros
-            rep = input("\nDigite as quantidades de elementos repetidos separadas por espaço(ex: 2 3 7 12): ")
+            rep = input("\nDigite as quantidades de elementos repetidos separadas por espaço (ex: 2 3 7 12): ")
             rep = list(map(int, rep.split()))
 
             f_n = math.factorial(n)  # Calcula o fatorial de n
@@ -816,34 +820,43 @@ def PM():
             p_f = 1
             f_text = []  # Lista para exibir a equação sem os valores numéricos
             f_v = []  # Lista para exibir os valores calculados
+            f_decomp = []  # Lista para exibir a decomposição dos fatoriais
+
+            # Decomposição do fatorial de n
+            f_n_p = " × ".join(str(i) for i in range(n, 0, -1))
 
             for r in rep:
+                f_r = math.factorial(r)  # Calcula o fatorial de cada número repetido
+                p_f *= f_r  # Multiplica os fatoriais dos elementos repetidos
 
-                    f_r = math.factorial(r)  # Calcula o fatorial de cada número repetido
-                    p_f *= f_r  # Multiplica os fatoriais dos elementos repetidos
-                    f_text.append(f"{r}!")  # Adiciona o texto da equação
-                    f_v.append(f"{f_r}")  # Adiciona os valores calculados
+                # Decomposição do fatorial de cada número repetido
+                f_r_p = " × ".join(str(i) for i in range(r, 0, -1))
+
+                f_text.append(f"{r}!")  # Adiciona o texto da equação (ex: 2!, 3!)
+                f_v.append(f"{f_r}")  # Adiciona os valores calculados (ex: 2, 6)
+                f_decomp.append(f"{f_r_p}")  # Adiciona a decomposição (ex: 2 × 1, 3 × 2 × 1)
 
             p_f_v = reduce(lambda x, y: x * y, [int(i) for i in f_v])
             permutacao = f_n // p_f  # Calcula a permutação com repetição
 
             # Exibe a fórmula
-            print("\n A fórmula da permutação com repetição é: Pn^(a, b,...) = n! / a! x b!...")
+            print("\nA fórmula da permutação com repetição é: Pn^(a, b,...) = n! / (a! × b! × ...)")
 
-            # Verifica se a variável rep tem mais de um elemento
             if len(rep) > 1:
 
-                # Exibe o processo completo do cálculo
+                # Exibe o processo e o resultado
                 print(f"\nPn^(a, b,...) = {n}! / {' × '.join(f_text)}")  # Fórmula sem valores
-                print(f"\nPn^(a, b,...) = {f_n} / {' × '.join(f_v)}")  # Fórmula com os valores calculados
-                print(f"\nPn^(a, b,...) = {f_n} / {p_f_v}")  # Fórmula com os valores calculados
-                print(f"\nO resultado dessa permutação com repetição é igual a {permutacao}")  # Exibe o resultado final
+                print(f"Pn^(a, b,...) = {f_n_p} / ({') × ('.join(f_decomp)})")  # Fórmula detalhada
+                print(f"Pn^(a, b,...) = {f_n} / {p_f_v}")  # Fórmula com os valores calculados
+                print(f"O resultado dessa permutação com repetição é igual a {permutacao}")  # Exibe o resultado final
 
             else: 
-
+                
+                # Exibe o processo e o resultado
                 print(f"\nPn^(a, b,...) = {n}! / {' × '.join(f_text)}")  # Fórmula sem valores
-                print(f"\nPn^(a, b,...) = {f_n} / {' × '.join(f_v)}")  # Fórmula com os valores calculados
-                print(f"\nO resultado dessa permutação com repetição é igual a {permutacao}")  # Exibe o resultado final
+                print(f"Pn^(a, b,...) = {f_n_p} / ({') × ('.join(f_decomp)})")  # Fórmula sem valores
+                print(f"Pn^(a, b,...) = {f_n} / {' × '.join(f_v)}")  # Fórmula com os valores calculados
+                print(f"O resultado dessa permutação com repetição é igual a {permutacao}")  # Exibe o resultado final
 
         # Permutação Circular
         elif p == "circular":
@@ -854,9 +867,11 @@ def PM():
             # Exibe a fórmula
             print("\nA fórmula da permutação circular é: Pc = (n - 1)!")
 
-            # Exibe o processo e o resultado
-            print(f"\nPc = ({n} - 1)! = {n - 1}!")
-            print(f"\nO resultado da permutação circular é igual a {r}")
+            # Exibe o processo completo do cálculo
+            f_p = " × ".join(str(i) for i in range(n - 1, 0, -1))  # Cria a sequência decrescente
+
+            print(f"\nPc = ({n} - 1)! = {n - 1}! = {f_p}")
+            print(f"O resultado da permutação circular é igual a {r}")
 
         else:
 
@@ -901,10 +916,14 @@ def Arrs():
         print("\nA fórmula do arranjo simples é: Anp = n! / (n - p)!")
 
         # Exibe o processo completo do cálculo
+        fatorial_n_process = " × ".join(str(i) for i in range(n, 0, -1))
+        fatorial_n_p_process = " × ".join(str(i) for i in range(n_p, 0, -1))
+
         print(f"\nAnp = {n}! / ({n} - {p})!")
-        print(f"\nAnp = {n}! / {n_p}!")
-        print(f"\nAnp = {f_n} / {f_n_p}")
-        print(f"\nO resultado do arranjo simples é igual a {arranjo}")
+        print(f"Anp = {n}! / {n_p}!")
+        print(f"Anp = {fatorial_n_process} / {fatorial_n_p_process}")
+        print(f"Anp = {f_n} / {f_n_p}")
+        print(f"O resultado do arranjo simples é igual a {arranjo}")
 
         print("\n" + "=" * fig)  # Linha divisória para organização da saída
 
@@ -929,29 +948,36 @@ def Cbs():
 
         # Verifica se p é válido
         if p > n or p < 0:
+
             print("\nErro: p deve ser menor ou igual a n e maior ou igual a 0.")
-            return
 
-        # Calcula fatoriais necessários
-        f_n = math.factorial(n)
-        f_p = math.factorial(p)
-        f_n_p = math.factorial(n - p)
+        else:
 
-        f_n_p_f = f_p * f_n_p
-        n_p = n - p
+            # Calcula fatoriais necessários
+            f_n = math.factorial(n)
+            f_p = math.factorial(p)
+            f_n_p = math.factorial(n - p)
+
+            f_n_p_f = f_p * f_n_p
+            n_p = n - p
         
-        # Calcula a combinação
-        combinacao = f_n // (f_p * f_n_p)
+            # Calcula a combinação
+            combinacao = f_n // f_n_p_f
 
-        # Exibe a fórmula
-        print("\nA formula da combinação sinples é: Cnp = n! / p!(n - p)!")
+            # Exibe a fórmula
+            print("\nA formula da combinação sinples é: Cnp = n! / p!(n - p)!")
 
-        # Exibe o processo completo do cálculo
-        print(f"\nCnp = {n}! / {p}! × ({n} - {p})!")
-        print(f"\nCnp = {n}! / {p}! × {n_p}!")
-        print(f"\nCnp = {f_n} / {f_p} × {f_n_p}")
-        print(f"\nCnp = {f_n} / {f_n_p_f}")
-        print(f"\nO resultado da combinação simples é igual a {combinacao}")
+            # Exibe o processo completo do cálculo
+            f_n_ps = " × ".join(str(i) for i in range(n, 0, -1))
+            f_p_p = " × ".join(str(i) for i in range(p, 0, -1))
+            f_n_p_p = " × ".join(str(i) for i in range(n_p, 0, -1))
+
+            print(f"\nCnp = {n}! / {p}! × ({n} - {p})!")
+            print(f"Cnp = {n}! / {p}! × {n_p}!")
+            print(f"Cnp = {f_n_ps} / ({f_p_p}) × ({f_n_p_p})")
+            print(f"Cnp = {f_n} / {f_p} × {f_n_p}")
+            print(f"Cnp = {f_n} / {f_n_p_f}")
+            print(f"O resultado da combinação simples é igual a {combinacao}")
 
         print("\n" + "=" * fig)
 
