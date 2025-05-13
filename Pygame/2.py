@@ -3,7 +3,7 @@ from pygame. locals import *
 from sys import exit
 
 # Inicialização do Pygame
-pygame.init ()
+pygame.init()
 
 # Definição das dimensões da tela
 largura = 800
@@ -13,12 +13,12 @@ altura = 600
 PRETO = (0, 0, 0)
 
 # Carregar a imagem de fundo
-fundo = pygame.image.load('Sprites2\\fundo.png') 
-fundo = pygame.transform.scale(fundo,(largura, altura)) # Redimensiona o fundo para o tamanho da tela
+fundo = pygame.image.load('Sprites\\Fundo\\fundo.png') 
+fundo = pygame.transform.scale(fundo, (largura, altura)) # Redimensiona o fundo para o tamanho da tela
 
 # Carregar o som de ataque
 pygame.mixer.init() # Inicializa o mixer de áudio
-som_ataque = pygame.mixer.Sound('Sprites2\\Garotos-Podres-Mancha.wav') #Arquivo de áudio do movimento
+som_ataque = pygame.mixer.Sound('Som\\Pygame\\Garotos-Podres-Mancha.wav') #Arquivo de áudio do movimento
 
 # Criação da janela
 tela = pygame.display.set_mode((largura, altura))
@@ -31,10 +31,26 @@ class Neve(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         # Lista de sprites para a animação de ataque
-        self.sprites_ataque = [pygame.image.load('Sprites2\\BonecoDeNeve.gif')]
+        self.sprites_ataque = [pygame.image.load('Sprites\\BonecoDeNeveW1.png'),
+                            pygame.image.load('Sprites\\BonecoDeNeveW2.png'),
+                            pygame.image.load('Sprites\\BonecoDeNeveW3.png'),
+                            pygame.image.load('Sprites\\BonecoDeNeveW4.png'),
+                            pygame.image.load('Sprites\\BonecoDeNeveW5.png'),
+                            pygame.image.load('Sprites\\BonecoDeNeveW6.png'),
+                            pygame.image.load('Sprites\\BonecoDeNeveW7.png'),
+                            pygame.image.load('Sprites\\BonecoDeNeveW8.png'),
+                            pygame.image.load('Sprites\\BonecoDeNeveW9.png')]
         
         # Lista de sprites para a animação de movimento (em pé)
-        self.sprites_movimento = [pygame.image.load('Sprites2\\BonecoDeNeveP.png')]
+        self.sprites_movimento = [pygame.image.load('Sprites\\BonecoDeNeveD1.png'),
+                                pygame.image.load('Sprites\\BonecoDeNeveD2.png'),
+                                pygame.image.load('Sprites\\BonecoDeNeveD3.png'),
+                                pygame.image.load('Sprites\\BonecoDeNeveD4.png'),
+                                pygame.image.load('Sprites\\BonecoDeNeveD5.png'),
+                                pygame.image.load('Sprites\\BonecoDeNeveD6.png'),
+                                pygame.image.load('Sprites\\BonecoDeNeveD7.png'),
+                                pygame.image.load('Sprites\\BonecoDeNeveD8.png'),
+                                pygame.image.load('Sprites\\BonecoDeNeveD9.png')]
 
         # Índices para controlar as animações
         self.atual_ataque = 0
@@ -72,8 +88,8 @@ class Neve(pygame.sprite.Sprite):
                 self.animar_ataque = False # Finaliza a animação de ataque
 
             # Atualiza a imagem de ataque
-            self.image = self.sprites_ataque[int(self.atual_ataque) ]
-            self.image = pygame.transform.scale(self.image,(128*5, 64*5))
+            self.image = self.sprites_ataque[int(self.atual_ataque)]
+            self.image = pygame.transform.scale(self.image, (128*5, 64*5))
 
         else:
         
@@ -86,7 +102,7 @@ class Neve(pygame.sprite.Sprite):
 
         # Atualiza a imagem de espera
         self.image = self.sprites_movimento[int(self.atual_movimento)]
-        self.image = pygame.transform.scale(self.image,(128*5, 64*5))
+        self.image = pygame.transform.scale(self.image, (128*5, 64*5))
 
 # Criação do grupo de sprites
 todas_as_sprites = pygame.sprite.Group()
@@ -99,17 +115,17 @@ relogio = pygame.time.Clock()
 # Loop principal
 while True:
     # Limita a taxa de quadros por segundo
-    relogio. tick(30)
+    relogio.tick(30)
 
     # Preenche a tela com a cor preta e desenha o fundo
-    tela.blit(fundo,(0, 0)) # Desenha o fundo na posição (0, 0)
+    tela.blit(fundo, (0, 0)) # Desenha o fundo na posição (0, 0)
 
     # Verifica eventos
-    for event in pygame. event. get():
+    for event in pygame.event.get():
         if event.type == QUIT:
-            pygame. quit()
+            pygame.quit()
             exit ()
-        if event. type == KEYDOWN:
+        if event.type == KEYDOWN:
             # Chama o método de ataque quando a tecla é pressionada
             boneco.atacar()
 
