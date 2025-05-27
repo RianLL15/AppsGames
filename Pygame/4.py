@@ -1,8 +1,6 @@
 import pygame
 import sys
 import subprocess
-import tkinter as tk
-from tkinter import messagebox
 import tempfile
 import random
 import string
