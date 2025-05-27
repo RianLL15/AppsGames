@@ -8,8 +8,8 @@ from math import inf
 pygame.init()
 
 #Sons interativos
-Erro = pygame.mixer.Sound('AppsGames-main\\Som\\P3IT\\errou-rude.wav')
-Special = pygame.mixer.Sound('AppsGames-main\\Som\\P3IT\\ai-meu-c-zinho-w-penelope-di-monaco.wav')
+Erro = pygame.mixer.Sound('Som\\P3IT\\errou-rude.wav')
+Special = pygame.mixer.Sound('Som\\P3IT\\ai-meu-c-zinho-w-penelope-di-monaco.wav')
 
 # Configurações da tela
 WIDTH, HEIGHT = 500, 400
