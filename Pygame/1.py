@@ -259,7 +259,7 @@ def SubP():
     while True:
         
         print("\n" + "=" * fig)
-        print("\nTemos essas opções de operação: pm, arrs, cbs, pa, pg, gp, ge, f2g, raiz, log, js, jc, subpag, voltar")
+        print("\nTemos essas opções de operação: pm, arrs, cbs, pa, pg, gp, f2g, raiz, log, js, jc, subpag, voltar")
         sub_op = input("\nEscolha a operação: ").lower().strip()
 
         if sub_op in opS:  # Verifica se a operação escolhida está na lista de operações secundárias válidas
@@ -2120,22 +2120,18 @@ while True:
     if op == "subpag3":  # Se o usuário escolher 'subpag3', chama a função de sub3_pag().
         sub3_pag()
 
-    if op == "subsubpag":  # Se o usuário escolher 'subpag3', chama a função de sub3_pag().
+    if op == "subsubpag":  # Se o usuário escolher 'subsubpag', chama a função de subsub_pag().
         subsub_pag()
 
     elif op == "subpag":  # Se o usuário escolher 'subpag', chama a função de sub_pag().
         sub_pag()
 
-    # Se a operação for uma das operações matemáticas básicas (+, -, *, /, ^, !, !!, %), chama a função correspondente.
+    # Se a operação for uma das operações matemáticas básicas (+, -, *, /, ^, %) chama a função correspondente.
     elif op in ["+", "-", "*", "/", "^", "%"]:
         pag(op)
 
     # Para operações avançadas que requerem um comando secreto
-    elif op in ["pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raiz", "log", "js", "jc", "media", "moda", "mediana", "esta"]:
+    elif op in ["pm", "arrs", "cbs", "pa","pg", "gp", "f2g", "raiz", "log", "js", "jc", "media", "moda", "mediana", "esta", "comprimento", "area", "volume", "massa", "tempo", "capacidade", "dados", "temperatura"]:
         comando_secreto(op)
 
-    # Para conversões que requerem um comando secreto
-    elif op in ["comprimento", "area", "volume", "massa", "tempo", "capacidade", "dados", "temperatura"]:
-        comando_secreto(op)
-    
 #############################################################################################################################
